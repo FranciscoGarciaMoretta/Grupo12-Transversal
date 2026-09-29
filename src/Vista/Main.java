@@ -1,6 +1,6 @@
-package grupo12.transversal;
+package Vista;
 
-public class Grupo12Transversal {
+public class Main {
     public static void main(String[] args) {
         //CODE
     }
