@@ -1,13 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author verta
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Conexion {
-    
+    private static Connection conexion = null;
+
+    public Conexion() {
+    }
+
+    public Connection cargarConexion() {
+        if (conexion==null) {
+            try {
+                Class.forName("org.mariadb.jdbc.Driver");
+                conexion=DriverManager.getConnection("jdbc:mysql://localhost/gp12universidad","root","");
+            }catch(SQLException|ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return conexion;
+    }
 }
