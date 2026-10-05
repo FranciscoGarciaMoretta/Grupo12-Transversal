@@ -116,7 +116,7 @@ public class Main {
         
         if (alumnEdit != null) {
             while (true) {
-                System.out.print("\nDesea modificar el dni? (s/n): ");
+                System.out.print("Desea modificar el dni? (s/n): ");
                 String resp = scannerLine.nextLine();
                 if (resp.toLowerCase().contains("s")) {break;
                 } else {
@@ -133,11 +133,11 @@ public class Main {
                     if (String.valueOf(dni).length() == 8) {
                         break;
                     }else{
-                        System.err.println("ERROR: Ingrese exactamente 8 numeros!!\n");
+                        System.err.println("ERROR: Ingrese exactamente 8 numeros!!");
                         scannerInt.nextLine();
                     }
                 }catch(Exception e) {
-                    System.err.println("ERROR: Ingrese un valor valido!!\n");
+                    System.err.println("ERROR: Ingrese un valor valido!!");
                     scannerInt.nextLine();
                 }
             }
@@ -161,15 +161,14 @@ public class Main {
                 if (name.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
                     break;
                 } else {
-                    System.err.println("ERROR: El nombre solo puede contener letras!!\n");
+                    System.err.println("ERROR: El nombre solo puede contener letras!!");
                 }
             }
         }
 
-        System.out.print("\nIngrese la fecha de nacimiento del Alumno: ");
         if (alumnEdit != null) {
             while (true) {
-                System.out.print("\nDesea modificar el dia de nacimiento? (s/n): ");
+                System.out.print("Desea modificar el dia de nacimiento? (s/n): ");
                 String resp = scannerLine.nextLine();
                 if (resp.toLowerCase().contains("s")) {break;
                 } else {
@@ -181,7 +180,7 @@ public class Main {
         if (cDay) {
             while (true) {
                 try {
-                    System.out.print("\nIngrese el dia: ");
+                    System.out.print("Ingrese el dia de nacimiento: ");
                     day = scannerInt.nextInt();
                     if (day > 0 && day < 32) {
                         break;
@@ -209,15 +208,15 @@ public class Main {
         if (cMonth) {
             while (true) {
                 try {
-                    System.out.print("Ingrese el mes: ");
+                    System.out.print("Ingrese el mes de nacimiento: ");
                     month = scannerInt.nextInt();
                     if (month > 0 && month < 32) {
                         break;
                     } else {
-                        System.err.println("ERROR: Ingrese un mes valido!!\n");
+                        System.err.println("ERROR: Ingrese un mes valido!!");
                     }
                 }catch(Exception e) {
-                    System.err.println("ERROR: Solo se permiten numeros!!\n");
+                    System.err.println("ERROR: Solo se permiten numeros!!");
                     scannerInt.nextLine();
                 }
             }
@@ -237,15 +236,15 @@ public class Main {
         if (cYear) {
             while (true) {
                 try {
-                    System.out.print("Ingrese el anio: ");
+                    System.out.print("Ingrese el anio de nacimiento: ");
                     year = scannerInt.nextInt();
                     if (year > 1925 && year < 2009 ) {
                         break;
                     } else {
-                        System.err.println("ERROR: Ingrese un anio coherente!!\n");
+                        System.err.println("ERROR: Ingrese un anio coherente!!");
                     }
                 }catch(Exception e) {
-                    System.err.println("ERROR: Solo se permiten numeros!!\n");
+                    System.err.println("ERROR: Solo se permiten numeros!!");
                     scannerInt.nextLine();
                 }
             }
@@ -264,7 +263,7 @@ public class Main {
         }
         if (cActive) {
             while (true) {
-                System.out.print("\nIngrese si el Alumno esta activo (s/n): ");
+                System.out.print("Ingrese si el Alumno esta activo (s/n): ");
                 String sactive = scannerLine.nextLine();
                 if (sactive.toLowerCase().contains("s")) {
                     active = true;
