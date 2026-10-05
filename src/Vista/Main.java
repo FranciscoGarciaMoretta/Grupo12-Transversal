@@ -96,17 +96,33 @@ public class Main {
         return find;
     }
     
+    static public boolean verifyChange(Alumno alumnEdit, String msg) {
+        boolean result = true;
+        if (alumnEdit != null) {
+            while (true) {
+                System.out.print(msg);
+                String resp = scannerLine.nextLine();
+                if (resp.toLowerCase().contains("s")) {break;
+                } else {
+                    if (resp.toLowerCase().contains("n")) {result = false; break;}
+                    System.err.println("ERROR: solo se permite ingresar s o n!!");
+                }
+            }
+        }
+        return result;
+    }
+    
     static public Alumno alumnCreate(Alumno alumnEdit) {
-        int idAlumn = 0;
-        int dni = 0; boolean cDni = true;
-        String name = ""; boolean cName = true;
-        int day = 1; boolean cDay = true;
-        int month = 1; boolean cMonth = true;
-        int year = 2007; boolean cYear = true;
-        boolean active = false; boolean cActive = true;
+        int id = 0;
+        int dni = 0;
+        String name = "";
+        int day = 1;
+        int month = 1;
+        int year = 2007;
+        boolean active = false;
         
         if (alumnEdit != null) {
-            idAlumn = alumnEdit.getIdAlumno();
+            id = alumnEdit.getIdAlumno();
             dni = alumnEdit.getDni();
             name = alumnEdit.getNombre();
             day =  alumnEdit.getFecNac().getDayOfMonth();
@@ -115,18 +131,7 @@ public class Main {
             active = alumnEdit.getActivo();
         }
         
-        if (alumnEdit != null) {
-            while (true) {
-                System.out.print("Desea modificar el dni? (s/n): ");
-                String resp = scannerLine.nextLine();
-                if (resp.toLowerCase().contains("s")) {break;
-                } else {
-                    if (resp.toLowerCase().contains("n")) {cDni = false; break;}
-                    System.err.println("ERROR: solo se permite ingresar s o n!!");
-                }
-            }
-        }
-        if (cDni) {
+        if (verifyChange(alumnEdit,"Desea modificar el dni? (s/n): ")) {
             while (true) {
                 try {
                     System.out.print("Ingrese el DNI del Alumno: ");
@@ -144,18 +149,7 @@ public class Main {
             }
         }
         
-        if (alumnEdit != null) {
-            while (true) {
-                System.out.print("Desea modificar el nombre? (s/n): ");
-                String resp = scannerLine.nextLine();
-                if (resp.toLowerCase().contains("s")) {break;
-                } else {
-                    if (resp.toLowerCase().contains("n")) {cName = false; break;}
-                    System.err.println("ERROR: solo se permite ingresar s o n!!");
-                }
-            }
-        }
-        if (cName) {
+        if (verifyChange(alumnEdit,"Desea modificar el nombre? (s/n): ")) {
             while (true) {
                 System.out.print("Ingrese el nombre del Alumno: ");
                 name = scannerLine.nextLine();
@@ -167,102 +161,53 @@ public class Main {
             }
         }
 
-        if (alumnEdit != null) {
-            while (true) {
-                System.out.print("Desea modificar el dia de nacimiento? (s/n): ");
-                String resp = scannerLine.nextLine();
-                if (resp.toLowerCase().contains("s")) {break;
-                } else {
-                    if (resp.toLowerCase().contains("n")) {cDay = false; break;}
-                    System.err.println("ERROR: solo se permite ingresar s o n!!");
-                }
-            }
-        }
-        if (cDay) {
-            while (true) {
-                try {
-                    System.out.print("Ingrese el dia de nacimiento: ");
-                    day = scannerInt.nextInt();
-                    if (day > 0 && day < 32) {
-                        break;
-                    } else {
-                        System.err.println("ERROR: Ingrese un dia valido!!");
-                    }
-                }catch(Exception e) {
-                    System.err.println("ERROR: Solo se permiten valores numericos!!");
-                    scannerInt.nextLine();
-                }
-            }
-        }
-        
-        if (alumnEdit != null) {
-            while (true) {
-                System.out.print("Desea modificar el mes de nacimiento? (s/n): ");
-                String resp = scannerLine.nextLine();
-                if (resp.toLowerCase().contains("s")) {break;
-                } else {
-                    if (resp.toLowerCase().contains("n")) {cMonth = false; break;}
-                    System.err.println("ERROR: solo se permite ingresar s o n!!");
-                }
-            }
-        }
-        if (cMonth) {
-            while (true) {
-                try {
-                    System.out.print("Ingrese el mes de nacimiento: ");
-                    month = scannerInt.nextInt();
-                    if (month > 0 && month < 32) {
-                        break;
-                    } else {
-                        System.err.println("ERROR: Ingrese un mes valido!!");
-                    }
-                }catch(Exception e) {
-                    System.err.println("ERROR: Solo se permiten numeros!!");
-                    scannerInt.nextLine();
-                }
-            }
-        }
-        
-        if (alumnEdit != null) {
-            while (true) {
-                System.out.print("Desea modificar el anio de nacimiento? (s/n): ");
-                String resp = scannerLine.nextLine();
-                if (resp.toLowerCase().contains("s")) {break;
-                } else {
-                    if (resp.toLowerCase().contains("n")) {cYear = false; break;}
-                    System.err.println("ERROR: solo se permite ingresar s o n!!");
-                }
-            }
-        }
-        if (cYear) {
+        if (verifyChange(alumnEdit,"Desea modificar el anio de nacimiento? (s/n): ")) {
             while (true) {
                 try {
                     System.out.print("Ingrese el anio de nacimiento: ");
                     year = scannerInt.nextInt();
+                    LocalDate date = LocalDate.of(year, month, day);
                     if (year > 1925 && year < 2009 ) {
                         break;
                     } else {
                         System.err.println("ERROR: Ingrese un anio coherente!!");
                     }
                 }catch(Exception e) {
-                    System.err.println("ERROR: Solo se permiten numeros!!");
+                    System.err.println("ERROR: Ingrese un anio valido!!");
                     scannerInt.nextLine();
                 }
             }
         }
         
-        if (alumnEdit != null) {
+        if (verifyChange(alumnEdit,"Desea modificar el mes de nacimiento? (s/n): ")) {
             while (true) {
-                System.out.print("Desea modificar el activo? (s/n): ");
-                String resp = scannerLine.nextLine();
-                if (resp.toLowerCase().contains("s")) {break;
-                } else {
-                    if (resp.toLowerCase().contains("n")) {cActive = false; break;}
-                    System.err.println("ERROR: solo se permite ingresar s o n!!");
+                try {
+                    System.out.print("Ingrese el mes de nacimiento: ");
+                    month = scannerInt.nextInt();
+                    LocalDate date = LocalDate.of(year, month, day);
+                    break;
+                }catch(Exception e) {
+                    System.err.println("ERROR: Ingrese un mes valido!!");
+                    scannerInt.nextLine();
                 }
             }
         }
-        if (cActive) {
+        
+        if (verifyChange(alumnEdit,"Desea modificar el dia de nacimiento? (s/n): ")) {
+            while (true) {
+                try {
+                    System.out.print("Ingrese el dia de nacimiento: ");
+                    day = scannerInt.nextInt();
+                    LocalDate date = LocalDate.of(year, month, day);
+                    break;
+                }catch(Exception e) {
+                    System.err.println("ERROR: Ingrese un dia valido!!");
+                    scannerInt.nextLine();
+                }
+            }
+        }
+        
+        if (verifyChange(alumnEdit,"Desea modificar el activo? (s/n): ")) {
             while (true) {
                 System.out.print("Ingrese si el Alumno esta activo (s/n): ");
                 String sactive = scannerLine.nextLine();
@@ -278,6 +223,6 @@ public class Main {
             }
         }
         
-        return new Alumno(idAlumn,dni,name,LocalDate.of(year, month, day),active);
+        return new Alumno(id,dni,name,LocalDate.of(year, month, day),active);
     }
 }
