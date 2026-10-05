@@ -15,6 +15,9 @@ public class AlumnoData {
         this.con = con;
     }
     
+    String cGreen = "\u001B[32m";
+    String cReset = "\u001B[0m";
+    
      public void insert(Alumno a) {
         try {
             String sql = "insert into alumno(dni, nombre, fecNac, activo) values (?, ?, ?, ?);";
@@ -26,10 +29,10 @@ public class AlumnoData {
             
             int filas = ps.executeUpdate();
             if (filas>0) {
-                System.out.println("Alumno Registrado con exito");
+                System.out.println(cGreen+"Alumno registrado con exito!!\n"+cReset);
             }
         }catch(SQLException e) {
-            System.err.println("Datos de alumno incompatibles");
+            System.err.println("ERROR: Datos de alumno incompatibles!!\n");
         }
     }
      
@@ -42,11 +45,11 @@ public class AlumnoData {
             
             int filas = ps.executeUpdate();
             if (filas>0) {
-                System.out.println("Se ha eliminado al alumno correctamente");
+                System.out.println(cGreen+"Se ha eliminado al alumno correctamente!!\n"+cReset);
             }else
-                System.err.println("No se ha encontrado al alumno");
+                System.err.println("ERROR: No se ha encontrado al alumno!!\n");
         }catch(SQLException e) {
-            System.err.println("Alumno no encontrado "+e);
+            System.err.println("ERROR: No se ha encontrado al alumno!!\n");
         }
     }
     
@@ -62,10 +65,10 @@ public class AlumnoData {
             
             int filas = ps.executeUpdate();
             if (filas>0) {
-                System.out.println("Alumno Editado con exito");
+                System.out.println(cGreen+"Alumno editado con exito!!\n"+cReset);
             }
         }catch(SQLException e) {
-            System.err.println("Datos de alumno incompatibles");
+            System.err.println("ERROR: Datos de alumno incompatibles!!\n");
         }
     }
     
@@ -90,7 +93,7 @@ public class AlumnoData {
                 );
             }
         }catch(SQLException e) {
-            System.err.println("Alumno no encontrado "+e);
+            System.err.println("ERROR: No se ha encontrado al alumno!! "+e+"\n");
         }
         return alumno;
     }

@@ -22,7 +22,7 @@ public class Main {
             boolean finishOptions = false;
             alumnList(alumnData);
             
-            System.out.println("\nOPCIONES:\n1 - Agregar un Alumno\n2 - Eliminar un Alumno\n3 - Editar un Alumno\n4 - Salir");
+            System.out.println("OPCIONES:\n1 - Agregar un Alumno\n2 - Eliminar un Alumno\n3 - Editar un Alumno\n4 - Salir");
             while (!finishOptions) {
                 try {
                     System.out.print("\nIngrese el numero de su opcion: ");
@@ -65,11 +65,12 @@ public class Main {
     }
     
     static public void alumnList (AlumnoData data){
-            System.out.println("\nLista de Alumnos:");
+            System.out.println("Lista de Alumnos:");
             ArrayList<Alumno> list = data.getList();
             String formatList = "%-3s %-11s %s%n";
             System.out.printf(formatList,"ID:","| DNI:","| NOMBRE COMPLETO:");
             for (Alumno i: list) {System.out.printf(formatList,i.getIdAlumno(),"| "+i.getDni(),"| "+i.getNombre());}
+            System.out.println("");
     }
     
     static public Alumno alumnSelect(AlumnoData data) {
@@ -79,7 +80,7 @@ public class Main {
         Alumno find = null;
         while(true) {
             try {
-                System.out.print("\nIngrese la ID del alumno que desea tomar: ");
+                System.out.print("Ingrese la ID del alumno que desea tomar: ");
                 int id = scannerInt.nextInt();
                 for(Alumno i: list) {if (id == i.getIdAlumno()) {find = i; break;}}
                 if (find != null) {
