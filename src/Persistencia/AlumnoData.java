@@ -72,8 +72,6 @@ public class AlumnoData {
         }
     }
     
-    
-    
     public Alumno getById(int id) {
         Alumno alumno = null;
         try{

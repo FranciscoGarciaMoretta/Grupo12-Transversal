@@ -74,7 +74,6 @@ public class Main {
     }
     
     static public Alumno alumnSelect(AlumnoData data) {
-        ArrayList<Alumno> list = data.getList();
         System.out.println("");
         alumnList(data);
         Alumno find = null;
@@ -82,7 +81,7 @@ public class Main {
             try {
                 System.out.print("Ingrese la ID del alumno que desea tomar: ");
                 int id = scannerInt.nextInt();
-                for(Alumno i: list) {if (id == i.getIdAlumno()) {find = i; break;}}
+                find = data.getById(id);
                 if (find != null) {
                     break;
                 }else{
