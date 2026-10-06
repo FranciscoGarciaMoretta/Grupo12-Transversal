@@ -69,6 +69,7 @@ public class VistaMain extends javax.swing.JFrame {
         jMenu2.setText("Materia");
 
         jMenuItem2.setText("Formulario materia");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
@@ -99,6 +100,14 @@ public class VistaMain extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jDesktopPane1.repaint();
+        VistaMateria ve  = new VistaMateria();
+        ve.setVisible(true);
+        jDesktopPane1.add(ve);
+        jDesktopPane1.moveToFront(ve);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
