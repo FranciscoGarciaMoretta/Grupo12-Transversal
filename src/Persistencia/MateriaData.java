@@ -90,4 +90,24 @@ public class MateriaData {
         return materia;
     }
     
+    public ArrayList<Materia> getList() {
+        ArrayList<Materia> materias = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM materia";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Materia a = new Materia(
+                    rs.getInt("idMateria"),
+                    rs.getString("nombre"),
+                    rs.getInt("estado")
+                );
+                materias.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return materias;
+    }
 }
