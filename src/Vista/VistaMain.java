@@ -51,7 +51,6 @@ public class VistaMain extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Archivo");
-        jMenu1.addActionListener(this::jMenu1ActionPerformed);
 
         jMenuItem3.setText("Salir");
         jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
@@ -92,10 +91,6 @@ public class VistaMain extends javax.swing.JFrame {
 
     private void AlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlumnoActionPerformed
     }//GEN-LAST:event_AlumnoActionPerformed
-
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        
-    }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         int opcion = javax.swing.JOptionPane.showConfirmDialog(this, "¿Está seguro que desea salir?", "Confirmación de salida", javax.swing.JOptionPane.YES_NO_OPTION);
