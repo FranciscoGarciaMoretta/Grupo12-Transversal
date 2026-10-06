@@ -43,7 +43,7 @@ CREATE TABLE `alumno` (
 
 INSERT INTO `alumno` (`idAlumno`, `dni`, `nombre`, `fecNac`, `activo`) VALUES
 (1, 47903395, 'Axel Lautaro Vertacnik', '2007-05-26', 1),
-(2, 42854654, 'Nicolás Agustín Costantini', '1996-04-16', 1),
+(2, 39543911, 'Nicolás Agustín Costantini', '1996-04-16', 1),
 (3, 43645211, 'Cesar Rafael das Neves Quinter', '2005-08-17', 1),
 (4, 41095789, 'Francisco Tomas Garcia Moretta', '1998-05-18', 1);
 
