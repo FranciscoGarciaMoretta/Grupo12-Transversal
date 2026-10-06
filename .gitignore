@@ -54,3 +54,6 @@ Thumbs.db
 *.properties
 *.properties
 *.properties
+nbproject/private/private.properties
+nbproject/project.properties
+nbproject/private/private.properties
