@@ -6,6 +6,7 @@ package Vista;
 
 import Modelo.Conexion;
 import Persistencia.AlumnoData;
+import Persistencia.MateriaData;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 
@@ -19,6 +20,7 @@ public class VistaMain extends javax.swing.JFrame {
     private static Conexion conexion = new Conexion();
     private static Connection con = (Connection) conexion.cargarConexion();
     public static AlumnoData alumnData = new AlumnoData(con);
+    public static MateriaData materiaData = new MateriaData(con);
     
     public VistaMain() {
         initComponents();
@@ -119,7 +121,7 @@ public class VistaMain extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        VistaMateria vm  = new VistaMateria();
+        VistaMateria vm = new VistaMateria();
         vm.setVisible(true);
         jDesktopPane1.add(vm);
         jDesktopPane1.moveToFront(vm);

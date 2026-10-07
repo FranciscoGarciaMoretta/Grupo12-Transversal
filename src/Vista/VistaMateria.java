@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Conexion;
 import Modelo.Materia;
 import Persistencia.MateriaData;
+import static Vista.VistaMain.materiaData;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -14,11 +15,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     public VistaMateria() {
         initComponents();
         tabla();
-        Conexion conexion = new Conexion();
-        Connection con = (Connection) conexion.cargarConexion();
-        MateriaData materiaData = new MateriaData(con);
         recorrerTabla(materiaData);
-
     }
 
     public void tabla() {
