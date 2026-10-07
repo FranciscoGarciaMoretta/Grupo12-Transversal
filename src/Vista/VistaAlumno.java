@@ -33,6 +33,12 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         table.addColumn("Activo");
         jtTablaAlumnos.setModel(table);
         
+        jtTablaAlumnos.getColumnModel().getColumn(0).setPreferredWidth(30);
+        jtTablaAlumnos.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jtTablaAlumnos.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jtTablaAlumnos.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jtTablaAlumnos.getColumnModel().getColumn(4).setPreferredWidth(80);
+        
         for (Alumno a: alumnData.getList()) {
             int iteration = 0;
             String activo = "Inactivo";
@@ -76,7 +82,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblListaAlumnos.setText("Lista de Alumnos:");
 
         jtTablaAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -92,17 +98,26 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             }
         ));
         jtTablaAlumnos.setToolTipText("");
+        jtTablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaAlumnosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtTablaAlumnos);
 
         btnAgregar.setText("Agregar");
 
         btnModificar.setText("Modificar");
+        btnModificar.setEnabled(false);
 
         btnBorrar.setText("Borrar");
+        btnBorrar.setEnabled(false);
 
         btnAlta.setText("Alta");
+        btnAlta.setEnabled(false);
 
         btnBaja.setText("Baja");
+        btnBaja.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +164,20 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtTablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaAlumnosMouseClicked
+        if (aSelected != null) {
+            btnModificar.setEnabled(true);
+            btnBorrar.setEnabled(true);
+            btnAlta.setEnabled(true);
+            btnBaja.setEnabled(true);
+        }else{
+            btnModificar.setEnabled(false);
+            btnBorrar.setEnabled(false);
+            btnAlta.setEnabled(false);
+            btnBaja.setEnabled(false);
+        }
+    }//GEN-LAST:event_jtTablaAlumnosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
