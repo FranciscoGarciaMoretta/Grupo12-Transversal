@@ -1,4 +1,5 @@
 package Vista;
+
 import Modelo.Alumno;
 import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.desktopMain;
@@ -7,37 +8,37 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaAlumno extends javax.swing.JInternalFrame {
-    
+
     private Alumno elementSelected = null;
     private int indexSelected = 0;
     private JTable jTable;
-    
+
     public VistaAlumno() {
         initComponents();
         jTable = jtTablaAlumnos;
-        
+
         updateTable();
-        
+
         jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable.setShowHorizontalLines(true);
         jTable.setShowVerticalLines(true);
         jTable.putClientProperty("JTable.showInactiveSelection", true);
         jTable.getSelectionModel().addListSelectionListener(
-            new javax.swing.event.ListSelectionListener() {
-                @Override
-                public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                    if (!evt.getValueIsAdjusting()) {
-                        int selection = jTable.getSelectedRow();
-                        if (selection != -1) {
-                            indexSelected = selection;
-                            elementSelected = alumnData.getById((int)jTable.getValueAt(selection, 0));
-                        }
+                new javax.swing.event.ListSelectionListener() {
+            @Override
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                if (!evt.getValueIsAdjusting()) {
+                    int selection = jTable.getSelectedRow();
+                    if (selection != -1) {
+                        indexSelected = selection;
+                        elementSelected = alumnData.getById((int) jTable.getValueAt(selection, 0));
                     }
                 }
             }
+        }
         );
     }
-    
+
     public void updateTable() {
         DefaultTableModel table = new DefaultTableModel() {
             @Override
@@ -45,51 +46,53 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 return false;
             }
         };
-        
+
         table.addColumn("Id");
         table.addColumn("Dni");
         table.addColumn("Nombre");
         table.addColumn("Fecha de Nacimiento");
         table.addColumn("Activo");
         jTable.setModel(table);
-        
+
         jTable.getColumnModel().getColumn(0).setPreferredWidth(30);
         jTable.getColumnModel().getColumn(1).setPreferredWidth(80);
         jTable.getColumnModel().getColumn(2).setPreferredWidth(200);
         jTable.getColumnModel().getColumn(3).setPreferredWidth(120);
         jTable.getColumnModel().getColumn(4).setPreferredWidth(80);
-        
-        for (Alumno a: alumnData.getList()) {
+
+        for (Alumno a : alumnData.getList()) {
             String activo = "Inactivo";
-            if (a.getActivo()) activo = "Activo";
-            table.addRow(new Object[]{a.getIdAlumno(),a.getDni(),a.getNombre(),a.getFecNac(),activo});
+            if (a.getActivo()) {
+                activo = "Activo";
+            }
+            table.addRow(new Object[]{a.getIdAlumno(), a.getDni(), a.getNombre(), a.getFecNac(), activo});
         }
-        
+
         jTable.setModel(table);
-        
+
         if (elementSelected != null) {
             if (jTable.getRowCount() > indexSelected) {
                 jTable.setRowSelectionInterval(indexSelected, indexSelected);
             }
         }
-        
+
         updateButtons();
     }
-    
+
     public void updateButtons() {
         if (elementSelected != null) {
             btnModificar.setEnabled(true);
             btnBorrar.setEnabled(true);
             btnAlta.setEnabled(!elementSelected.getActivo());
             btnBaja.setEnabled(elementSelected.getActivo());
-        }else{
+        } else {
             btnModificar.setEnabled(false);
             btnBorrar.setEnabled(false);
             btnAlta.setEnabled(false);
             btnBaja.setEnabled(false);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -134,6 +137,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
+        btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         btnBorrar.setText("Eliminar");
         btnBorrar.setEnabled(false);
@@ -212,7 +216,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         alumnData.remove(elementSelected.getIdAlumno());
         updateTable();
-        
+
         int rowCount = jTable.getRowCount();
         if (rowCount > 0) {
             int newIndex = Math.min(indexSelected, rowCount - 1);
@@ -226,13 +230,29 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         wVistaAlumnoVentana.setLocation(
-            this.getX()+((this.getWidth() - wVistaAlumnoVentana.getWidth()) / 2),
-            this.getY()+((this.getHeight() - wVistaAlumnoVentana.getHeight()) / 2)
+                this.getX() + ((this.getWidth() - wVistaAlumnoVentana.getWidth()) / 2),
+                this.getY() + ((this.getHeight() - wVistaAlumnoVentana.getHeight()) / 2)
         );
         wVistaAlumnoVentana.resetAll();
         wVistaAlumnoVentana.show();
         desktopMain.moveToFront(wVistaAlumnoVentana);
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        VistaAlumnoVentanaModificar vistaModificar = new VistaAlumnoVentanaModificar(elementSelected, this);
+        desktopMain.add(vistaModificar);
+        vistaModificar.setLocation(
+                this.getX() + ((this.getWidth() - vistaModificar.getWidth()) / 2),
+                this.getY() + ((this.getHeight() - vistaModificar.getHeight()) / 2)
+        );
+
+        vistaModificar.setVisible(true);
+        try {
+            vistaModificar.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+
+    }//GEN-LAST:event_btnModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
