@@ -74,6 +74,7 @@ public class VistaMain extends javax.swing.JFrame {
         jMenu2.setText("Materia");
 
         jMenuItem2.setText("Formulario materia");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
