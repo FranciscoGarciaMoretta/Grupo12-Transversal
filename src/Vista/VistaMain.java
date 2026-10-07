@@ -6,6 +6,7 @@ package Vista;
 
 import Modelo.Conexion;
 import Persistencia.AlumnoData;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 
 /**
@@ -114,6 +115,15 @@ public class VistaMain extends javax.swing.JFrame {
         jDesktopPane1.add(va);
         jDesktopPane1.moveToFront(va);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        VistaMateria vm  = new VistaMateria();
+        vm.setVisible(true);
+        jDesktopPane1.add(vm);
+        jDesktopPane1.moveToFront(vm);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
