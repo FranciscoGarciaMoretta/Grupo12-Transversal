@@ -223,7 +223,6 @@ public class VistaAlumnoVentanaModificar extends javax.swing.JInternalFrame {
         text = text.replaceAll("[^0-9/]", "");
         txtFechaNac.setBackground(new Color(255, 255, 255));
         txtFechaNac.setText(text);
-        lblFecNac.setText("");
     }//GEN-LAST:event_txtFechaNacKeyReleased
 
     private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
@@ -231,7 +230,6 @@ public class VistaAlumnoVentanaModificar extends javax.swing.JInternalFrame {
         text = text.replaceAll("\\D", "");
         txtDni.setBackground(new Color(255, 255, 255));
         txtDni.setText(text);
-        lblDni.setText("");
     }//GEN-LAST:event_txtDniKeyReleased
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -273,7 +271,6 @@ public class VistaAlumnoVentanaModificar extends javax.swing.JInternalFrame {
         text = text.replaceAll("[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]", "");
         txtNombre.setBackground(new Color(255, 255, 255));
         txtNombre.setText(text);
-        lblNombre.setText("");
     }//GEN-LAST:event_txtNombreKeyReleased
 
 
