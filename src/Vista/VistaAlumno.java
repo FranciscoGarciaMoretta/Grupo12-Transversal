@@ -1,42 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Vista;
-
 import Modelo.Alumno;
 import static Vista.VistaMain.alumnData;
+import static Vista.VistaMain.desktopMain;
+import static Vista.VistaMain.wVistaAlumnoVentana;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author silvi
- */
 public class VistaAlumno extends javax.swing.JInternalFrame {
-
-    private Alumno aSelected = null;
-    private int iSelected = 0;
+    
+    private Alumno elementSelected = null;
+    private int indexSelected = 0;
+    private JTable jTable;
     
     public VistaAlumno() {
         initComponents();
-        readingTable();
-        jtTablaAlumnos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jtTablaAlumnos.setShowHorizontalLines(true);
-        jtTablaAlumnos.setShowVerticalLines(true);
-        jtTablaAlumnos.putClientProperty("JTable.showInactiveSelection", true);
-        jtTablaAlumnos.getSelectionModel().addListSelectionListener(
+        jTable = jtTablaAlumnos;
+        
+        updateTable();
+        
+        jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable.setShowHorizontalLines(true);
+        jTable.setShowVerticalLines(true);
+        jTable.putClientProperty("JTable.showInactiveSelection", true);
+        jTable.getSelectionModel().addListSelectionListener(
             new javax.swing.event.ListSelectionListener() {
                 @Override
                 public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                     if (!evt.getValueIsAdjusting()) {
-                        int selection = jtTablaAlumnos.getSelectedRow();
-
+                        int selection = jTable.getSelectedRow();
                         if (selection != -1) {
-                            iSelected = selection;
-                            aSelected = alumnData.getById(
-                                (int) jtTablaAlumnos.getValueAt(selection, 0)
-                            );
+                            indexSelected = selection;
+                            elementSelected = alumnData.getById((int)jTable.getValueAt(selection, 0));
                         }
                     }
                 }
@@ -44,7 +38,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         );
     }
     
-    public void readingTable() {
+    public void updateTable() {
         DefaultTableModel table = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -57,38 +51,37 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         table.addColumn("Nombre");
         table.addColumn("Fecha de Nacimiento");
         table.addColumn("Activo");
-        jtTablaAlumnos.setModel(table);
+        jTable.setModel(table);
         
-        jtTablaAlumnos.getColumnModel().getColumn(0).setPreferredWidth(30);
-        jtTablaAlumnos.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jtTablaAlumnos.getColumnModel().getColumn(2).setPreferredWidth(200);
-        jtTablaAlumnos.getColumnModel().getColumn(3).setPreferredWidth(120);
-        jtTablaAlumnos.getColumnModel().getColumn(4).setPreferredWidth(80);
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTable.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTable.getColumnModel().getColumn(4).setPreferredWidth(80);
         
         for (Alumno a: alumnData.getList()) {
-            int iteration = 0;
             String activo = "Inactivo";
             if (a.getActivo()) activo = "Activo";
             table.addRow(new Object[]{a.getIdAlumno(),a.getDni(),a.getNombre(),a.getFecNac(),activo});
         }
         
-        jtTablaAlumnos.setModel(table);
+        jTable.setModel(table);
         
-        if (aSelected != null) {
-            if (jtTablaAlumnos.getRowCount() > iSelected) {
-                jtTablaAlumnos.setRowSelectionInterval(iSelected, iSelected);
+        if (elementSelected != null) {
+            if (jTable.getRowCount() > indexSelected) {
+                jTable.setRowSelectionInterval(indexSelected, indexSelected);
             }
         }
-            
-        changeVisuals();
+        
+        updateButtons();
     }
     
-    public void changeVisuals() {
-        if (aSelected != null) {
+    public void updateButtons() {
+        if (elementSelected != null) {
             btnModificar.setEnabled(true);
             btnBorrar.setEnabled(true);
-            btnAlta.setEnabled(!aSelected.getActivo());
-            btnBaja.setEnabled(aSelected.getActivo());
+            btnAlta.setEnabled(!elementSelected.getActivo());
+            btnBaja.setEnabled(elementSelected.getActivo());
         }else{
             btnModificar.setEnabled(false);
             btnBorrar.setEnabled(false);
@@ -96,11 +89,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             btnBaja.setEnabled(false);
         }
     }
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -115,6 +104,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         btnBaja = new javax.swing.JButton();
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblListaAlumnos.setText("Lista de Alumnos:");
@@ -140,6 +130,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtTablaAlumnos);
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(this::btnAgregarActionPerformed);
 
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
@@ -203,35 +194,44 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtTablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaAlumnosMouseClicked
-        changeVisuals();
+        updateButtons();
     }//GEN-LAST:event_jtTablaAlumnosMouseClicked
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
-        aSelected.setActivo(true);
-        alumnData.update(aSelected);
-        readingTable();
+        elementSelected.setActivo(true);
+        alumnData.update(elementSelected);
+        updateTable();
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
-        aSelected.setActivo(false);
-        alumnData.update(aSelected);
-        readingTable();
+        elementSelected.setActivo(false);
+        alumnData.update(elementSelected);
+        updateTable();
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        int index = iSelected;
-        alumnData.remove(aSelected.getIdAlumno());
-        readingTable();
-        int rowCount = jtTablaAlumnos.getRowCount();
+        alumnData.remove(elementSelected.getIdAlumno());
+        updateTable();
+        
+        int rowCount = jTable.getRowCount();
         if (rowCount > 0) {
-            int newIndex = Math.min(index, rowCount - 1);
-            jtTablaAlumnos.setRowSelectionInterval(newIndex, newIndex);
-            int idAlumno = (int) jtTablaAlumnos.getValueAt(newIndex, 0);
-            aSelected = alumnData.getById(idAlumno);
+            int newIndex = Math.min(indexSelected, rowCount - 1);
+            jTable.setRowSelectionInterval(newIndex, newIndex);
+            int idAlumno = (int) jTable.getValueAt(newIndex, 0);
+            elementSelected = alumnData.getById(idAlumno);
         } else {
-            aSelected = null;
+            elementSelected = null;
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        wVistaAlumnoVentana.setLocation(
+            this.getX()+((this.getWidth() - wVistaAlumnoVentana.getWidth()) / 2),
+            this.getY()+((this.getHeight() - wVistaAlumnoVentana.getHeight()) / 2)
+        );
+        wVistaAlumnoVentana.show();
+        desktopMain.moveToFront(wVistaAlumnoVentana);
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
