@@ -1,4 +1,5 @@
 package Persistencia;
+import Modelo.Conexion;
 import Modelo.Materia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

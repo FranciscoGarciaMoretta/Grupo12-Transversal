@@ -1,6 +1,6 @@
 package Vista;
 
-import Persistencia.Conexion;
+import Modelo.Conexion;
 import Modelo.Materia;
 import Persistencia.MateriaData;
 import static Vista.VistaMain.materiaData;

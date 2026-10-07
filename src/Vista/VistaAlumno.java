@@ -229,6 +229,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             this.getX()+((this.getWidth() - wVistaAlumnoVentana.getWidth()) / 2),
             this.getY()+((this.getHeight() - wVistaAlumnoVentana.getHeight()) / 2)
         );
+        wVistaAlumnoVentana.resetAll();
         wVistaAlumnoVentana.show();
         desktopMain.moveToFront(wVistaAlumnoVentana);
     }//GEN-LAST:event_btnAgregarActionPerformed

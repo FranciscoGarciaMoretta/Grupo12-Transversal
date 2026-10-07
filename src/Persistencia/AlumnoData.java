@@ -1,4 +1,5 @@
 package Persistencia;
+import Modelo.Conexion;
 import Modelo.Alumno;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AlumnoData {
-    private Connection con;
+    private final Connection con;
     
     public AlumnoData() {
         this.con = Conexion.cargarConexion();
