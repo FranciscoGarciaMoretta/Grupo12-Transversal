@@ -1,9 +1,7 @@
 package Vista;
 import Modelo.Alumno;
-import Modelo.Conexion;
 import Persistencia.AlumnoData;
 import java.time.LocalDate;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,9 +10,7 @@ public class Main {
     public static Scanner scannerLine = new Scanner(System.in);
     
     public static void main(String[] args) {
-        Conexion conexion = new Conexion();
-        Connection con = (Connection) conexion.cargarConexion();
-        AlumnoData alumnData = new AlumnoData(con);
+        AlumnoData alumnData = new AlumnoData();
 
         boolean finishProgram = false;
         

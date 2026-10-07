@@ -1,20 +1,15 @@
 package Vista;
 
-import Modelo.Conexion;
 import Persistencia.AlumnoData;
 import Persistencia.MateriaData;
-import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import javax.swing.JDesktopPane;
 
 public class VistaMain extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaMain.class.getName());
-    private static Conexion conexion = new Conexion();
-    private static Connection con = (Connection) conexion.cargarConexion();
     
-    public static AlumnoData alumnData = new AlumnoData(con);
-    public static MateriaData materiaData = new MateriaData(con);
+    public static AlumnoData alumnData = new AlumnoData();
+    public static MateriaData materiaData = new MateriaData();
     
     public static JDesktopPane desktopMain;
     public static VistaAlumno wVistaAlumno = new VistaAlumno();

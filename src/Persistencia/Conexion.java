@@ -1,4 +1,4 @@
-package Modelo;
+package Persistencia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ public class Conexion {
 
     public Conexion() {}
 
-    public Connection cargarConexion() {
+    public static Connection cargarConexion() {
         if (conexion==null) {
             try {
                 Class.forName("org.mariadb.jdbc.Driver");

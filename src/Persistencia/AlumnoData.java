@@ -4,15 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AlumnoData {
     private Connection con;
     
-    public AlumnoData(Connection con) {
-        this.con = con;
+    public AlumnoData() {
+        this.con = Conexion.cargarConexion();
     }
     
     String cGreen = "\u001B[32m";
