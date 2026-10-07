@@ -4,17 +4,56 @@
  */
 package Vista;
 
+import Modelo.Alumno;
+import static Vista.VistaMain.alumnData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author silvi
  */
 public class VistaAlumno extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VistaAlumno
-     */
+    private Alumno aSelected = null;
+    
     public VistaAlumno() {
         initComponents();
+        
+        DefaultTableModel table = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        
+        table.addColumn("Id");
+        table.addColumn("Dni");
+        table.addColumn("Nombre");
+        table.addColumn("Fecha de Nacimiento");
+        table.addColumn("Activo");
+        jtTablaAlumnos.setModel(table);
+        
+        for (Alumno a: alumnData.getList()) {
+            int iteration = 0;
+            String activo = "Inactivo";
+            if (a.getActivo()) activo = "Activo";
+            table.addRow(new Object[]{a.getIdAlumno(),a.getDni(),a.getNombre(),a.getFecNac(),activo});
+        }
+        jtTablaAlumnos.setModel(table);
+        
+        jtTablaAlumnos.getSelectionModel().addListSelectionListener(
+            new javax.swing.event.ListSelectionListener() {
+                @Override
+                public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                    if (!evt.getValueIsAdjusting()) {
+                        int seleccion = jtTablaAlumnos.getSelectedRow();
+                        if (seleccion != -1) {
+                            aSelected = alumnData.getById((int) jtTablaAlumnos.getValueAt(seleccion, 0));
+                        }
+                    }
+                }
+            }
+        );
     }
 
     /**
@@ -35,8 +74,10 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         btnAlta = new javax.swing.JButton();
         btnBaja = new javax.swing.JButton();
 
-        lblListaAlumnos.setText("Lista de alumnos");
-        lblListaAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        setClosable(true);
+
+        lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblListaAlumnos.setText("Lista de Alumnos:");
 
         jtTablaAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jtTablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
@@ -50,6 +91,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaAlumnos.setToolTipText("");
         jScrollPane1.setViewportView(jtTablaAlumnos);
 
         btnAgregar.setText("Agregar");
@@ -70,9 +112,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar)
@@ -85,6 +125,10 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBaja)
                         .addGap(16, 16, 16))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,15 +136,15 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar)
                     .addComponent(btnBorrar)
                     .addComponent(btnAlta)
                     .addComponent(btnBaja))
-                .addGap(23, 23, 23))
+                .addGap(13, 13, 13))
         );
 
         pack();

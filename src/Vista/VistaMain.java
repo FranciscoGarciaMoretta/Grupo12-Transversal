@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import Modelo.Conexion;
+import Persistencia.AlumnoData;
+import java.sql.Connection;
+
 /**
  *
  * @author silvi
@@ -11,10 +15,10 @@ package Vista;
 public class VistaMain extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaMain.class.getName());
-
-    /**
-     * Creates new form VistaMain
-     */
+    private static Conexion conexion = new Conexion();
+    private static Connection con = (Connection) conexion.cargarConexion();
+    public static AlumnoData alumnData = new AlumnoData(con);
+    
     public VistaMain() {
         initComponents();
     }
@@ -62,6 +66,7 @@ public class VistaMain extends javax.swing.JFrame {
         Alumno.addActionListener(this::AlumnoActionPerformed);
 
         jMenuItem1.setText("Formulario alumno");
+        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
         Alumno.add(jMenuItem1);
 
         jMenuBar1.add(Alumno);
@@ -99,6 +104,15 @@ public class VistaMain extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        VistaAlumno va  = new VistaAlumno();
+        va.setVisible(true);
+        jDesktopPane1.add(va);
+        jDesktopPane1.moveToFront(va);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
