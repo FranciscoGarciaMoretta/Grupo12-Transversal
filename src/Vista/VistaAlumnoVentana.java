@@ -4,8 +4,13 @@
  */
 package Vista;
 
+import Modelo.Alumno;
+import static Vista.VistaMain.alumnData;
 import java.awt.Color;
+import java.time.LocalDate;
 import javax.swing.UIManager;
+import static Vista.VistaMain.wVistaAlumno;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,11 +32,13 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         lblNombre.setText("");
         txtNombre.setText("");
         txtNombre.setBackground(new Color(255, 255, 255));
-        lblFecNac.setText("");
+        lblDay.setText("");
         txtDay.setText("");
         txtDay.setBackground(new Color(255, 255, 255));
+        lblMonth.setText("");
         txtMonth.setText("");
         txtMonth.setBackground(new Color(255, 255, 255));
+        lblYear.setText("");
         txtYear.setText("");
         txtYear.setBackground(new Color(255, 255, 255));
     }
@@ -62,7 +69,9 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         btnConfirmar = new javax.swing.JButton();
         lblDni = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
-        lblFecNac = new javax.swing.JLabel();
+        lblDay = new javax.swing.JLabel();
+        lblMonth = new javax.swing.JLabel();
+        lblYear = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -226,27 +235,41 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         lblNombre.setForeground(new java.awt.Color(230, 0, 0));
         lblNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        lblFecNac.setForeground(new java.awt.Color(230, 0, 0));
-        lblFecNac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDay.setForeground(new java.awt.Color(230, 0, 0));
+        lblDay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblMonth.setForeground(new java.awt.Color(230, 0, 0));
+        lblMonth.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblYear.setForeground(new java.awt.Color(230, 0, 0));
+        lblYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDay, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblFecNac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblYear, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -265,12 +288,15 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFecNac, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDay, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblYear, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnConfirmar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,7 +332,7 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         if (text.length() > 2) {text = text.substring(0, 2);}
         txtDay.setBackground(new Color(255, 255, 255));
         txtDay.setText(text);
-        lblFecNac.setText("");
+        lblDay.setText("");
     }//GEN-LAST:event_txtDayKeyReleased
 
     private void txtMonthKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMonthKeyReleased
@@ -315,7 +341,7 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         if (text.length() > 2) {text = text.substring(0, 2);}
         txtMonth.setBackground(new Color(255, 255, 255));
         txtMonth.setText(text);
-        lblFecNac.setText("");
+        lblMonth.setText("");
     }//GEN-LAST:event_txtMonthKeyReleased
 
     private void txtYearKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtYearKeyReleased
@@ -324,7 +350,7 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         if (text.length() > 4) {text = text.substring(0, 4);}
         txtYear.setBackground(new Color(255, 255, 255));
         txtYear.setText(text);
-        lblFecNac.setText("");
+        lblYear.setText("");
     }//GEN-LAST:event_txtYearKeyReleased
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
@@ -334,6 +360,13 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
             lblDni.setText("Ingrese un Dni!!");
         } else if (txtDni.getText().length() != 8) {
             lblDni.setText("Debe contener exactamente 8 dígitos!!");
+        } else {
+            ArrayList<Alumno> xAlumn = alumnData.getList();
+            for (Alumno alumn : xAlumn) {
+                if (Integer.parseInt(txtDni.getText()) == alumn.getDni()) {
+                    lblDni.setText("Ese DNI ya existe!!");
+                }
+            }
         }
         
         if (txtNombre.getText().length() < 1) {
@@ -342,8 +375,61 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
             lblNombre.setText("Debe contener más de 3 caracteres!!");
         }
         
-        if (lblDni.getText().length() > 0) {txtDni.setBackground(errorColor);}
-        if (lblNombre.getText().length() > 0) {txtNombre.setBackground(errorColor);}
+        int day = 1;
+        int month = 1;
+        int year = 2000;
+        
+        if (txtDay.getText().length()>0) {day = Integer.parseInt(txtDay.getText());}
+        if (txtMonth.getText().length()>0) {month = Integer.parseInt(txtMonth.getText());}
+        if (txtYear.getText().length()>0) {year = Integer.parseInt(txtYear.getText());}
+        
+        if (txtDay.getText().length() < 1) {
+            lblDay.setText("Falta un Dia!!");
+        } else {
+            try {
+                int month2 = Math.max(1, Math.min(month, 12));
+                LocalDate date = LocalDate.of(year, month2, day);
+            }catch(Exception e) {
+                lblDay.setText("Dia inválido!!");
+            }
+        }
+        
+        if (txtMonth.getText().length() < 1) {
+            lblMonth.setText("Falta un Mes!!");
+        } else {
+            try {
+               LocalDate date = LocalDate.of(year, month, 1);
+            }catch(Exception e) {
+               lblMonth.setText("Mes inválido!!");
+            }
+        }
+        
+        int yearMin = LocalDate.now().getYear()-100;
+        int yearMax = LocalDate.now().getYear()-10;
+        
+        if (txtYear.getText().length() < 1) {
+            lblYear.setText("Falta un Año!!");
+        } else if (year >= yearMax || year <= yearMin) {
+            lblYear.setText("Año inválido!!");
+        }
+        
+        boolean problem = false;
+        
+        if (lblDni.getText().length() > 0) {txtDni.setBackground(errorColor); problem = true;}
+        if (lblNombre.getText().length() > 0) {txtNombre.setBackground(errorColor); problem = true;}
+        if (lblDay.getText().length() > 0) {txtDay.setBackground(errorColor); problem = true;}
+        if (lblMonth.getText().length() > 0) {txtMonth.setBackground(errorColor); problem = true;}
+        if (lblYear.getText().length() > 0) {txtYear.setBackground(errorColor); problem = true;}
+        
+        if (!problem) {
+            int aDni = Integer.parseInt(txtDni.getText());
+            String aName = txtNombre.getText();
+            LocalDate aDate = LocalDate.of(year, month, day);
+            alumnData.insert(new Alumno(0,aDni,aName,aDate,true));
+            this.hide();
+            wVistaAlumno.updateTable();
+            resetAll();
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
 
@@ -363,9 +449,11 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel lblDay;
     private javax.swing.JLabel lblDni;
-    private javax.swing.JLabel lblFecNac;
+    private javax.swing.JLabel lblMonth;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblYear;
     private javax.swing.JTextField txtDay;
     private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtMonth;
