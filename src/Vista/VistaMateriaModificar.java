@@ -190,7 +190,7 @@ public class VistaMateriaModificar extends javax.swing.JInternalFrame {
         } else {
             int mID = materiaSelected.getIdMateria();
             String mName = txtNombre.getText();
-            int mEstate = materiaSelected.getEstado();
+            boolean mEstate = materiaSelected.getEstado();
             materiaData.update(new Materia(mID,mName,mEstate));
             wVistaMateria.updateTable();
             wVistaMateria.selectTable(mID);

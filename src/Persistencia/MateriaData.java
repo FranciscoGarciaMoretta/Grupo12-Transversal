@@ -22,7 +22,7 @@ public class MateriaData {
             String sql = "insert into materia(nombre, estado) values (?, ?);";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, m.getNombre());
-            ps.setInt(2, m.getEstado());
+            ps.setBoolean(2, m.getEstado());
             
             int filas = ps.executeUpdate();
             if (filas>0) {
@@ -55,7 +55,7 @@ public class MateriaData {
             String sql = "update materia set nombre = ?, estado = ? where idMateria = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, m.getNombre());
-            ps.setInt(2, m.getEstado());
+            ps.setBoolean(2, m.getEstado());
             ps.setInt(3, m.getIdMateria());
             
             int filas = ps.executeUpdate();
@@ -80,7 +80,7 @@ public class MateriaData {
                 materia = new Materia(
                     res.getInt("idMateria"),
                     res.getString("nombre"),
-                    res.getInt("estado")
+                    res.getBoolean("estado")
                 );
             }
         }catch(SQLException e) {
@@ -100,7 +100,7 @@ public class MateriaData {
                 Materia a = new Materia(
                     rs.getInt("idMateria"),
                     rs.getString("nombre"),
-                    rs.getInt("estado")
+                    rs.getBoolean("estado")
                 );
                 materias.add(a);
             }

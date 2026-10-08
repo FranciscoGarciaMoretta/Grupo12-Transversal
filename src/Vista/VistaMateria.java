@@ -79,7 +79,11 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         jTable.getColumnModel().getColumn(2).setPreferredWidth(100);
 
         for (Materia m : materiaData.getList()) {
-            table.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getEstado()});
+            String estado = "Inactivo";
+            if (m.getEstado()) {
+                estado = "Activo";
+            }
+            table.addRow(new Object[]{m.getIdMateria(), m.getNombre(), estado});
         }
 
         jTable.setModel(table);
@@ -100,8 +104,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         if (jTable.getRowCount() > 0 && elementSelected != null) {
             btnModificar.setEnabled(true);
             btnBorrar.setEnabled(true);
-            if (elementSelected.getEstado()>1) {btnBaja.setEnabled(true);}
-            if (elementSelected.getEstado()<4) {btnAlta.setEnabled(true);}
+            btnAlta.setEnabled(!elementSelected.getEstado());
+            btnBaja.setEnabled(elementSelected.getEstado());
         }
     }
 
@@ -212,7 +216,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtTablaAlumnosMouseClicked
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
-        elementSelected.setEstado(elementSelected.getEstado()-1);
+        elementSelected.setEstado(false);
         materiaData.update(elementSelected);
         updateTable();
     }//GEN-LAST:event_btnBajaActionPerformed
@@ -255,7 +259,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
-        elementSelected.setEstado(elementSelected.getEstado()+1);
+        elementSelected.setEstado(true);
         materiaData.update(elementSelected);
         updateTable();
     }//GEN-LAST:event_btnAltaActionPerformed

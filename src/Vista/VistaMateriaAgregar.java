@@ -184,7 +184,7 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
             txtNombre.setBackground(errorColor);
         }else{
             String aName = txtNombre.getText();
-            materiaData.insert(new Materia(0,aName,4));
+            materiaData.insert(new Materia(0,aName,true));
             wVistaMateria.updateTable();
             wVistaMateria.selectTable(-1);
             this.hide();

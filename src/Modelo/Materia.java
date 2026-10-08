@@ -5,9 +5,9 @@ public class Materia {
     
     private int idMateria;
     private String nombre;
-    private int estado;
+    private boolean estado;
     
-    public Materia(int idMateria, String nombre, int estado) {
+    public Materia(int idMateria, String nombre, boolean estado) {
         this.idMateria = idMateria;
         this.nombre = nombre;
         this.estado = estado;
@@ -29,11 +29,11 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public int getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
