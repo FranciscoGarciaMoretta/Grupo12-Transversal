@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Persistencia;
 
-/**
- *
- * @author Rafael
- */
+import Modelo.Conexion;
+import java.sql.Connection;
+
 public class CursadaData {
+      private final Connection con;
+      
+      public CursadaData(){
+      this.con = Conexion.cargarConexion();
+      }
+      
+      String cGreen = "\u001B[32m";
+    String cReset = "\u001B[0m";
+    
+    
     
 }
