@@ -171,6 +171,13 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
             lblNombre.setText("Debe contener menos de 20 caracteres!!");
         } else if (txtNombre.getText().length() < 4) {
             lblNombre.setText("Debe contener más de 3 caracteres!!");
+        } else {
+            ArrayList<Materia> xMateria = materiaData.getList();
+            for (Materia materia : xMateria) {
+                if (txtNombre.getText().equals(materia.getNombre())) {
+                    lblNombre.setText("Ese Nombre ya existe!!");
+                }
+            }
         }
         
         if (lblNombre.getText().length() > 0) {

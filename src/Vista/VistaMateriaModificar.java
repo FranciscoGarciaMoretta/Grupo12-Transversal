@@ -178,8 +178,8 @@ public class VistaMateriaModificar extends javax.swing.JInternalFrame {
         } else if (txtNombre.getText().length() > 20) {
             lblNombre.setText("Debe contener menos de 20 caracteres!!");
         } else {
-            for (Materia matria : xMateria) {
-                if (txtNombre.getText().equals(matria.getNombre()) && matria.getIdMateria() != materiaSelected.getIdMateria()) {
+            for (Materia materia : xMateria) {
+                if (txtNombre.getText().equals(materia.getNombre()) && materia.getIdMateria() != materiaSelected.getIdMateria()) {
                     lblNombre.setText("Ese Nombre ya está en uso!!");
                 }
             }
