@@ -2,16 +2,17 @@
 package Modelo;
 
 public class Materia {
-    int idMateria;
-    String nombre;
-    int estado;
-
+    
+    private int idMateria;
+    private String nombre;
+    private int estado;
+    
     public Materia(int idMateria, String nombre, int estado) {
         this.idMateria = idMateria;
         this.nombre = nombre;
         this.estado = estado;
     }
-
+    
     public int getIdMateria() {
         return idMateria;
     }

@@ -1,13 +1,13 @@
 package Modelo;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Alumno {
-    int idAlumno;
-    int dni;
-    String nombre;
-    LocalDate fecNac;
-    boolean activo;
+    
+    private int idAlumno;
+    private int dni;
+    private String nombre;
+    private LocalDate fecNac;
+    private boolean activo;
 
     public Alumno(int idAlumno, int dni, String nombre, LocalDate fecNac, boolean activo) {
         this.idAlumno = idAlumno;
@@ -61,4 +61,5 @@ public class Alumno {
     public String toString() {
         return nombre + " " + dni;
     }
+    
 }

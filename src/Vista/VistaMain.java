@@ -44,6 +44,8 @@ public class VistaMain extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        InscripcionesMenu = new javax.swing.JMenu();
+        InscribirMateriasMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +84,14 @@ public class VistaMain extends javax.swing.JFrame {
         jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
+
+        InscripcionesMenu.setText("Inscripciones");
+
+        InscribirMateriasMenuItem.setText("Inscripción a materias");
+        InscribirMateriasMenuItem.addActionListener(this::InscribirMateriasMenuItemActionPerformed);
+        InscripcionesMenu.add(InscribirMateriasMenuItem);
+
+        jMenuBar1.add(InscripcionesMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -122,6 +132,15 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.moveToFront(wVistaMateria);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void InscribirMateriasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InscribirMateriasMenuItemActionPerformed
+        desktopMain.removeAll();
+        desktopMain.repaint();
+        VistaInscripcion inscribirMateria = new VistaInscripcion();
+        inscribirMateria.setVisible(true);
+        desktopMain.add(inscribirMateria);
+        desktopMain.moveToFront(inscribirMateria);
+    }//GEN-LAST:event_InscribirMateriasMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -149,6 +168,8 @@ public class VistaMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Alumno;
+    private javax.swing.JMenuItem InscribirMateriasMenuItem;
+    private javax.swing.JMenu InscripcionesMenu;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -2,12 +2,13 @@
 package Modelo;
 
 public class Cursada {
-    int idCursada;
-    Alumno idAlumno;
-    Materia idMateria;
-    float nota;
-    float asist;
-    int cursa;
+    
+    private int idCursada;
+    private Alumno idAlumno;
+    private Materia idMateria;
+    private float nota;
+    private float asist;
+    private int cursa;
 
     public Cursada(int idCursada, Alumno idAlumno, Materia idMateria, float nota, float asist, int cursa) {
         this.idCursada = idCursada;
@@ -18,11 +19,6 @@ public class Cursada {
         this.cursa = cursa;
     }
 
-    
-    
-    
-    
-    
     public int getIdCursada() {
         return idCursada;
     }
@@ -75,10 +71,5 @@ public class Cursada {
     public String toString() {
         return "Cursada{" + "idCursada=" + idCursada + ", idAlumno=" + idAlumno + ", idMateria=" + idMateria + '}';
     }
-    
-    
-    
-    
-    
     
 }
