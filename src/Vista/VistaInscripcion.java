@@ -65,6 +65,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         cmbAlumno = new javax.swing.JComboBox<>();
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitulo.setText("Inscripciones a Materias");

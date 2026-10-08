@@ -21,6 +21,8 @@ public class VistaMain extends javax.swing.JFrame {
     public static VistaMateriaAgregar wVistaMateriaAgregar = new VistaMateriaAgregar();
     public static VistaMateriaModificar wVistaMateriaModificar = new VistaMateriaModificar();
     
+    public static VistaInscripcion wVistaInscripcion = new VistaInscripcion();
+    
     public VistaMain() {
         initComponents();
         desktopMain = jDesktopPane1; 
@@ -30,6 +32,7 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.add(wVistaMateria); wVistaMateria.hide();
         desktopMain.add(wVistaMateriaAgregar); wVistaMateriaAgregar.hide();
         desktopMain.add(wVistaMateriaModificar); wVistaMateriaModificar.hide();
+        desktopMain.add(wVistaInscripcion); wVistaInscripcion.hide();
     }
 
     @SuppressWarnings("unchecked")
@@ -121,24 +124,21 @@ public class VistaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        wVistaAlumno.setLocation(0,0);
+        wVistaAlumno.setLocation(50,0);
         wVistaAlumno.show();
         desktopMain.moveToFront(wVistaAlumno);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        wVistaMateria.setLocation(0,0);
+        wVistaMateria.setLocation(100,0);
         wVistaMateria.show();
         desktopMain.moveToFront(wVistaMateria);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void InscribirMateriasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InscribirMateriasMenuItemActionPerformed
-        desktopMain.removeAll();
-        desktopMain.repaint();
-        VistaInscripcion inscribirMateria = new VistaInscripcion();
-        inscribirMateria.setVisible(true);
-        desktopMain.add(inscribirMateria);
-        desktopMain.moveToFront(inscribirMateria);
+        wVistaInscripcion.setLocation(150,0);
+        wVistaInscripcion.show();
+        desktopMain.moveToFront(wVistaInscripcion);
     }//GEN-LAST:event_InscribirMateriasMenuItemActionPerformed
 
     /**
