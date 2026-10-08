@@ -48,7 +48,7 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(80, 38));
-        setPreferredSize(new java.awt.Dimension(486, 310));
+        setPreferredSize(new java.awt.Dimension(486, 208));
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
