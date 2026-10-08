@@ -99,16 +99,16 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }
 
     public void updateButtons() {
-        if (elementSelected != null) {
+        btnModificar.setEnabled(false);
+        btnBorrar.setEnabled(false);
+        btnAlta.setEnabled(false);
+        btnBaja.setEnabled(false);
+        
+        if (jTable.getRowCount() > 0 && elementSelected != null) {
             btnModificar.setEnabled(true);
             btnBorrar.setEnabled(true);
             btnAlta.setEnabled(!elementSelected.getActivo());
             btnBaja.setEnabled(elementSelected.getActivo());
-        } else {
-            btnModificar.setEnabled(false);
-            btnBorrar.setEnabled(false);
-            btnAlta.setEnabled(false);
-            btnBaja.setEnabled(false);
         }
     }
 

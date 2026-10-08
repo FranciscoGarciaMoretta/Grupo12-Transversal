@@ -96,7 +96,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         btnAlta.setEnabled(false);
         btnBaja.setEnabled(false);
         
-        if (elementSelected != null) {
+        if (jTable.getRowCount() > 0 && elementSelected != null) {
             btnModificar.setEnabled(true);
             btnBorrar.setEnabled(true);
             if (elementSelected.getEstado()>1) {btnBaja.setEnabled(true);}
