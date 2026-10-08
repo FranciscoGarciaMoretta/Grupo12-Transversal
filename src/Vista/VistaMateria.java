@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Materia;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.materiaData;
+import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
 import static Vista.VistaMain.wVistaMateriaModificar;
 import javax.swing.JTable;
@@ -217,7 +218,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if (elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
+        if (elementSelected.getIdMateria() == wVistaMateria.elementSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
         updateTable();
 

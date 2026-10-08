@@ -3,6 +3,7 @@ package Vista;
 import Modelo.Alumno;
 import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.desktopMain;
+import static Vista.VistaMain.wVistaAlumno;
 import static Vista.VistaMain.wVistaAlumnoAgregar;
 import static Vista.VistaMain.wVistaAlumnoModificar;
 import javax.swing.JTable;
@@ -233,7 +234,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if (elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
+        if (elementSelected.getIdAlumno() == wVistaAlumno.elementSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
         alumnData.remove(elementSelected.getIdAlumno());
         updateTable();
 
