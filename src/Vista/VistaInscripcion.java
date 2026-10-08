@@ -1,8 +1,10 @@
 package Vista;
 
 import Modelo.Alumno;
+import Modelo.Cursada;
 import Persistencia.AlumnoData;
 import Persistencia.MateriaData;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaInscripcion extends javax.swing.JInternalFrame {
@@ -10,6 +12,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     private DefaultTableModel modeloTabla = new DefaultTableModel();
     private AlumnoData alumnos = new AlumnoData();
     private MateriaData materias = new MateriaData();
+    private JTable jTable;
 
     public VistaInscripcion() {
         initComponents();
@@ -17,25 +20,34 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         cargarAlumnos();
     }
 
-    private void armarTabla() {
-        modeloTabla = new DefaultTableModel() {
+     public void armarTabla() {
+        DefaultTableModel table = new DefaultTableModel() {
             @Override
-            public boolean isCellEditable(int fila, int columna) {
+            public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        
-        modeloTabla.addColumn("Materia");
 
-        tblAlumnos.setModel(modeloTabla);
+        table.addColumn("");
+        table.addColumn("");
+        table.addColumn("");
+        jTable.setModel(table);
 
-        tblAlumnos.getSelectionModel().addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                boolean haySeleccion = tblAlumnos.getSelectedRow() != -1;
-                btnInscribir.setEnabled(haySeleccion);
-                btnBorrarInscripción.setEnabled(haySeleccion);
-            }
-        });
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+
+//        for (Cursada m : materiaData.getList()) {
+//            table.addRow(new Object[]{m.getIdMateria(), m.getNombre(), m.getEstado()});
+//        }
+//
+//        jTable.setModel(table);
+//
+//        if (elementSelected != null) {
+//            selectTable(elementSelected.getIdMateria());
+//        }
+//
+//        updateButtons();
     }
     
     public void cargarAlumnos() {
