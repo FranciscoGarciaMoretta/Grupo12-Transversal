@@ -218,7 +218,7 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
-        btnConfirmar.setText("Modificar");
+        btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
 
         lblDni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
