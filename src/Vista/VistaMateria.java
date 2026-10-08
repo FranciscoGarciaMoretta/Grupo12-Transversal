@@ -218,7 +218,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if (elementSelected.getIdMateria() == wVistaMateria.elementSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
+        if (wVistaMateriaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
         updateTable();
 

@@ -234,7 +234,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if (elementSelected.getIdAlumno() == wVistaAlumno.elementSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
+        if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
         alumnData.remove(elementSelected.getIdAlumno());
         updateTable();
 
