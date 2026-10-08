@@ -12,9 +12,14 @@ public class VistaMain extends javax.swing.JFrame {
     public static MateriaData materiaData = new MateriaData();
     
     public static JDesktopPane desktopMain;
+    
     public static VistaAlumno wVistaAlumno = new VistaAlumno();
     public static VistaAlumnoAgregar wVistaAlumnoAgregar = new VistaAlumnoAgregar();
     public static VistaAlumnoModificar wVistaAlumnoModificar = new VistaAlumnoModificar();
+    
+    public static VistaMateria wVistaMateria = new VistaMateria();
+    public static VistaMateriaAgregar wVistaMateriaAgregar = new VistaMateriaAgregar();
+    public static VistaMateriaModificar wVistaMateriaModificar = new VistaMateriaModificar();
     
     public VistaMain() {
         initComponents();
@@ -22,6 +27,9 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.add(wVistaAlumno); wVistaAlumno.hide();
         desktopMain.add(wVistaAlumnoAgregar); wVistaAlumnoAgregar.hide();
         desktopMain.add(wVistaAlumnoModificar); wVistaAlumnoModificar.hide();
+        desktopMain.add(wVistaMateria); wVistaMateria.hide();
+        desktopMain.add(wVistaMateriaAgregar); wVistaMateriaAgregar.hide();
+        desktopMain.add(wVistaMateriaModificar); wVistaMateriaModificar.hide();
     }
 
     @SuppressWarnings("unchecked")
@@ -109,12 +117,9 @@ public class VistaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        desktopMain.removeAll();
-        desktopMain.repaint();
-        VistaMateria vm = new VistaMateria();
-        vm.setVisible(true);
-        desktopMain.add(vm);
-        desktopMain.moveToFront(vm);
+        wVistaMateria.setLocation(0,0);
+        wVistaMateria.show();
+        desktopMain.moveToFront(wVistaMateria);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
