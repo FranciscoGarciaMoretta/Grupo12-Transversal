@@ -368,6 +368,8 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
             lblNombre.setText("Ingrese un Nombre!!");
         } else if (txtNombre.getText().length() < 4) {
             lblNombre.setText("Debe contener más de 3 caracteres!!");
+        } else if (txtNombre.getText().length() > 30) {
+            lblNombre.setText("Debe contener menos de 30 caracteres!!");
         } else {
             for (Alumno alumn : xAlumn) {
                 if (txtNombre.getText().equals(alumn.getNombre()) && alumn.getIdAlumno() != alumnSelected.getIdAlumno()) {

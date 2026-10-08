@@ -370,6 +370,8 @@ public class VistaAlumnoAgregar extends javax.swing.JInternalFrame {
         
         if (txtNombre.getText().length() < 1) {
             lblNombre.setText("Ingrese un Nombre!!");
+        } else if (txtNombre.getText().length() > 30) {
+            lblNombre.setText("Debe contener menos de 30 caracteres!!");
         } else if (txtNombre.getText().length() < 4) {
             lblNombre.setText("Debe contener más de 3 caracteres!!");
         }
