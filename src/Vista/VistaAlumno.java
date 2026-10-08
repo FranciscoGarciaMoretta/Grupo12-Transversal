@@ -92,9 +92,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jTable.setModel(table);
 
         if (elementSelected != null) {
-            if (jTable.getRowCount() > indexSelected) {
-                selectTable(indexSelected);
-            }
+            selectTable(elementSelected.getIdAlumno());
         }
 
         updateButtons();
