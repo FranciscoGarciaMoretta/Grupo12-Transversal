@@ -8,38 +8,32 @@ import Modelo.Alumno;
 import static Vista.VistaMain.alumnData;
 import java.awt.Color;
 import java.time.LocalDate;
-import javax.swing.UIManager;
 import static Vista.VistaMain.wVistaAlumno;
 import java.util.ArrayList;
 
-/**
- *
- * @author silvi
- */
-public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
+public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VistaAgregar
-     */
-    public VistaAlumnoVentana() {
+    public Alumno alumnSelected;
+    
+    public VistaAlumnoModificar() {
         initComponents();
     }
-
+    
     public void resetAll() {
         lblDni.setText("");
-        txtDni.setText("");
+        txtDni.setText(String.valueOf(alumnSelected.getDni()));
         txtDni.setBackground(new Color(255, 255, 255));
         lblNombre.setText("");
-        txtNombre.setText("");
+        txtNombre.setText(alumnSelected.getNombre());
         txtNombre.setBackground(new Color(255, 255, 255));
         lblDay.setText("");
-        txtDay.setText("");
+        txtDay.setText(String.valueOf(alumnSelected.getFecNac().getDayOfMonth()));
         txtDay.setBackground(new Color(255, 255, 255));
         lblMonth.setText("");
-        txtMonth.setText("");
+        txtMonth.setText(String.valueOf(alumnSelected.getFecNac().getMonthValue()));
         txtMonth.setBackground(new Color(255, 255, 255));
         lblYear.setText("");
-        txtYear.setText("");
+        txtYear.setText(String.valueOf(alumnSelected.getFecNac().getYear()));
         txtYear.setBackground(new Color(255, 255, 255));
     }
     
@@ -151,7 +145,7 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("NOMBRE:");
+        jLabel11.setText("NOMBRE COMPLETO:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -224,7 +218,7 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
-        btnConfirmar.setText("Confirmar");
+        btnConfirmar.setText("Modificar");
         btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
 
         lblDni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -356,15 +350,16 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Color errorColor = new Color(255, 185, 185);
         
+        ArrayList<Alumno> xAlumn = alumnData.getList();
+        
         if (txtDni.getText().length() < 1) {
             lblDni.setText("Ingrese un Dni!!");
         } else if (txtDni.getText().length() != 8) {
             lblDni.setText("Debe contener exactamente 8 dígitos!!");
         } else {
-            ArrayList<Alumno> xAlumn = alumnData.getList();
             for (Alumno alumn : xAlumn) {
-                if (Integer.parseInt(txtDni.getText()) == alumn.getDni()) {
-                    lblDni.setText("Ese DNI ya existe!!");
+                if (Integer.parseInt(txtDni.getText()) == alumn.getDni() && alumn.getIdAlumno() != alumnSelected.getIdAlumno()) {
+                    lblDni.setText("Ese DNI ya está en uso!!");
                 }
             }
         }
@@ -373,6 +368,12 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
             lblNombre.setText("Ingrese un Nombre!!");
         } else if (txtNombre.getText().length() < 4) {
             lblNombre.setText("Debe contener más de 3 caracteres!!");
+        } else {
+            for (Alumno alumn : xAlumn) {
+                if (txtNombre.getText().equals(alumn.getNombre()) && alumn.getIdAlumno() != alumnSelected.getIdAlumno()) {
+                    lblNombre.setText("Ese Nombre ya está en uso!!");
+                }
+            }
         }
         
         int day = 1;
@@ -422,13 +423,15 @@ public class VistaAlumnoVentana extends javax.swing.JInternalFrame {
         if (lblYear.getText().length() > 0) {txtYear.setBackground(errorColor); problem = true;}
         
         if (!problem) {
+            int aID = alumnSelected.getIdAlumno();
             int aDni = Integer.parseInt(txtDni.getText());
             String aName = txtNombre.getText();
             LocalDate aDate = LocalDate.of(year, month, day);
-            alumnData.insert(new Alumno(0,aDni,aName,aDate,true));
-            this.hide();
+            boolean aActive = alumnSelected.getActivo();
+            alumnData.update(new Alumno(aID,aDni,aName,aDate,aActive));
             wVistaAlumno.updateTable();
-            resetAll();
+            wVistaAlumno.selectTable(aID);
+            this.hide();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

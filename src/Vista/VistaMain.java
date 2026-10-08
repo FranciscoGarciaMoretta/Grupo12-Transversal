@@ -13,13 +13,15 @@ public class VistaMain extends javax.swing.JFrame {
     
     public static JDesktopPane desktopMain;
     public static VistaAlumno wVistaAlumno = new VistaAlumno();
-    public static VistaAlumnoVentana wVistaAlumnoVentana = new VistaAlumnoVentana();
+    public static VistaAlumnoAgregar wVistaAlumnoAgregar = new VistaAlumnoAgregar();
+    public static VistaAlumnoModificar wVistaAlumnoModificar = new VistaAlumnoModificar();
     
     public VistaMain() {
         initComponents();
         desktopMain = jDesktopPane1; 
         desktopMain.add(wVistaAlumno); wVistaAlumno.hide();
-        desktopMain.add(wVistaAlumnoVentana); wVistaAlumnoVentana.hide();
+        desktopMain.add(wVistaAlumnoAgregar); wVistaAlumnoAgregar.hide();
+        desktopMain.add(wVistaAlumnoModificar); wVistaAlumnoModificar.hide();
     }
 
     @SuppressWarnings("unchecked")

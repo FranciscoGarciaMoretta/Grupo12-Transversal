@@ -3,7 +3,8 @@ package Vista;
 import Modelo.Alumno;
 import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.desktopMain;
-import static Vista.VistaMain.wVistaAlumnoVentana;
+import static Vista.VistaMain.wVistaAlumnoAgregar;
+import static Vista.VistaMain.wVistaAlumnoModificar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,6 +40,26 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         );
     }
 
+    public void selectTable(int row) {
+        if (jTable.getRowCount() == 0) {
+            return;
+        }
+
+        if (row == -1) {
+            int lastRow = jTable.getRowCount() - 1;
+            jTable.setRowSelectionInterval(lastRow, lastRow);
+            return;
+        }
+
+        for (int i = 0; i < jTable.getRowCount(); i++) {
+            if (Integer.parseInt(jTable.getValueAt(i, 0).toString()) == row) {
+                jTable.setRowSelectionInterval(i, i);
+                jTable.scrollRectToVisible(jTable.getCellRect(i, 0, true));
+                break;
+            }
+        }
+    }
+    
     public void updateTable() {
         DefaultTableModel table = new DefaultTableModel() {
             @Override
@@ -72,7 +93,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         if (elementSelected != null) {
             if (jTable.getRowCount() > indexSelected) {
-                jTable.setRowSelectionInterval(indexSelected, indexSelected);
+                selectTable(indexSelected);
             }
         }
 
@@ -214,6 +235,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        if (elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
         alumnData.remove(elementSelected.getIdAlumno());
         updateTable();
 
@@ -229,29 +251,24 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        wVistaAlumnoVentana.setLocation(
-                this.getX() + ((this.getWidth() - wVistaAlumnoVentana.getWidth()) / 2),
-                this.getY() + ((this.getHeight() - wVistaAlumnoVentana.getHeight()) / 2)
+        wVistaAlumnoAgregar.setLocation(
+                this.getX() + ((this.getWidth() - wVistaAlumnoAgregar.getWidth()) / 2),
+                this.getY() + ((this.getHeight() - wVistaAlumnoAgregar.getHeight()) / 2)
         );
-        wVistaAlumnoVentana.resetAll();
-        wVistaAlumnoVentana.show();
-        desktopMain.moveToFront(wVistaAlumnoVentana);
+        wVistaAlumnoAgregar.resetAll();
+        wVistaAlumnoAgregar.show();
+        desktopMain.moveToFront(wVistaAlumnoAgregar);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        VistaAlumnoVentanaModificar vistaModificar = new VistaAlumnoVentanaModificar(elementSelected, this);
-        desktopMain.add(vistaModificar);
-        vistaModificar.setLocation(
-                this.getX() + ((this.getWidth() - vistaModificar.getWidth()) / 2),
-                this.getY() + ((this.getHeight() - vistaModificar.getHeight()) / 2)
+        wVistaAlumnoModificar.setLocation(
+                this.getX() + ((this.getWidth() - wVistaAlumnoModificar.getWidth()) / 2),
+                this.getY() + ((this.getHeight() - wVistaAlumnoModificar.getHeight()) / 2)
         );
-
-        vistaModificar.setVisible(true);
-        try {
-            vistaModificar.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {
-        }
-
+        wVistaAlumnoModificar.alumnSelected = elementSelected;
+        wVistaAlumnoModificar.resetAll();
+        wVistaAlumnoModificar.show();
+        desktopMain.moveToFront(wVistaAlumnoModificar);
     }//GEN-LAST:event_btnModificarActionPerformed
 
 
