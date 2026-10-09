@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class VistaAlumno extends javax.swing.JInternalFrame {
 
+    javax.swing.table.DefaultTableCellRenderer renderer = new javax.swing.table.DefaultTableCellRenderer();
+    
     private Alumno elementSelected = null;
     private int indexSelected = 0;
     private JTable jTable;
@@ -75,12 +77,18 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         table.addColumn("Fecha de Nacimiento");
         table.addColumn("Activo");
         jTable.setModel(table);
-
+        
+        renderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         jTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+        jTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
         jTable.getColumnModel().getColumn(1).setPreferredWidth(80);
+        jTable.getColumnModel().getColumn(1).setCellRenderer(renderer);
         jTable.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTable.getColumnModel().getColumn(2).setCellRenderer(renderer);
         jTable.getColumnModel().getColumn(3).setPreferredWidth(120);
+        jTable.getColumnModel().getColumn(3).setCellRenderer(renderer);
         jTable.getColumnModel().getColumn(4).setPreferredWidth(80);
+        jTable.getColumnModel().getColumn(4).setCellRenderer(renderer);
 
         for (Alumno a : alumnData.getList()) {
             String activo = "Inactivo";

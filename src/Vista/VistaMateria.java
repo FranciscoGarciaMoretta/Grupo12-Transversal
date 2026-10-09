@@ -10,14 +10,16 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaMateria extends javax.swing.JInternalFrame {
-
+    
+    javax.swing.table.DefaultTableCellRenderer renderer = new javax.swing.table.DefaultTableCellRenderer();
+    
     private Materia elementSelected = null;
     private int indexSelected = 0;
     private JTable jTable;
 
     public VistaMateria() {
         initComponents();
-        jTable = jtTablaAlumnos;
+        jTable = jtTablaMaterias;
 
         updateTable();
 
@@ -74,9 +76,14 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         table.addColumn("Estado");
         jTable.setModel(table);
 
+        
+        renderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         jTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
         jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jTable.getColumnModel().getColumn(1).setCellRenderer(renderer);
         jTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jTable.getColumnModel().getColumn(2).setCellRenderer(renderer);
 
         for (Materia m : materiaData.getList()) {
             String estado = "Inactivo";
@@ -115,7 +122,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
 
         lblListaAlumnos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaAlumnos = new javax.swing.JTable();
+        jtTablaMaterias = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
@@ -128,8 +135,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblListaAlumnos.setText("Lista de Materias:");
 
-        jtTablaAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtTablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaMaterias.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jtTablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -140,13 +147,13 @@ public class VistaMateria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaAlumnos.setToolTipText("");
-        jtTablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtTablaMaterias.setToolTipText("");
+        jtTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtTablaAlumnosMouseClicked(evt);
+                jtTablaMateriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtTablaAlumnos);
+        jScrollPane1.setViewportView(jtTablaMaterias);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(this::btnAgregarActionPerformed);
@@ -211,9 +218,9 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaAlumnosMouseClicked
+    private void jtTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMateriasMouseClicked
         updateButtons();
-    }//GEN-LAST:event_jtTablaAlumnosMouseClicked
+    }//GEN-LAST:event_jtTablaMateriasMouseClicked
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         elementSelected.setEstado(false);
@@ -272,7 +279,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtTablaAlumnos;
+    private javax.swing.JTable jtTablaMaterias;
     private javax.swing.JLabel lblListaAlumnos;
     // End of variables declaration//GEN-END:variables
 }

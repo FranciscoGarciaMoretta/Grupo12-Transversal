@@ -1,23 +1,28 @@
 package Vista;
 
 import Modelo.Alumno;
-import static Vista.VistaMain.alumnData;
+import Modelo.Materia;
+import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.desktopMain;
-import static Vista.VistaMain.wVistaAlumno;
-import static Vista.VistaMain.wVistaAlumnoAgregar;
-import static Vista.VistaMain.wVistaAlumnoModificar;
+import static Vista.VistaMain.wVistaMateria;
+import static Vista.VistaMain.wVistaMateriaAgregar;
+import static Vista.VistaMain.wVistaMateriaModificar;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaInscripcion extends javax.swing.JInternalFrame {
 
-    private Alumno elementSelected = null;
+    javax.swing.table.DefaultTableCellRenderer renderer = new javax.swing.table.DefaultTableCellRenderer();
+    
+    private Alumno alumnSelected = null;
+    private Materia materiaSelected = null;
     private int indexSelected = 0;
     private JTable jTable;
 
     public VistaInscripcion() {
         initComponents();
-        jTable = jtTablaAlumnos;
+        jTable = jtTablaMaterias;
 
         updateTable();
 
@@ -33,7 +38,15 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                     int selection = jTable.getSelectedRow();
                     if (selection != -1) {
                         indexSelected = selection;
-                        elementSelected = alumnData.getById((int) jTable.getValueAt(selection, 0));
+                        int idMateria = 0;
+                        String nameMateria = (String)jTable.getValueAt(selection, 0);
+                        ArrayList<Materia> listMateria = materiaData.getList();
+                        for (Materia materia : listMateria) {
+                            if (materia.getNombre().equals(nameMateria)) {
+                                idMateria = materia.getIdMateria();
+                            }
+                        }
+                        if (idMateria>0) {materiaSelected = materiaData.getById(idMateria);}
                     }
                 }
             }
@@ -69,32 +82,24 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
             }
         };
 
-        table.addColumn("Id");
-        table.addColumn("Dni");
-        table.addColumn("Nombre");
-        table.addColumn("Fecha de Nacimiento");
-        table.addColumn("Activo");
+        table.addColumn("Materias:");
         jTable.setModel(table);
 
-        jTable.getColumnModel().getColumn(0).setPreferredWidth(30);
-        jTable.getColumnModel().getColumn(1).setPreferredWidth(80);
-        jTable.getColumnModel().getColumn(2).setPreferredWidth(200);
-        jTable.getColumnModel().getColumn(3).setPreferredWidth(120);
-        jTable.getColumnModel().getColumn(4).setPreferredWidth(80);
+        renderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+        jTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+        jTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
 
-        for (Alumno a : alumnData.getList()) {
-            String activo = "Inactivo";
-            if (a.getActivo()) {
-                activo = "Activo";
-            }
-            table.addRow(new Object[]{a.getIdAlumno(), a.getDni(), a.getNombre(), a.getFecNac(), activo});
+        for (Materia m : materiaData.getList()) {
+            table.addRow(new Object[]{m.getNombre()});
         }
-
+        
         jTable.setModel(table);
 
-        if (elementSelected != null) {
-            selectTable(elementSelected.getIdAlumno());
+        if (materiaSelected != null) {
+            selectTable(materiaSelected.getIdMateria());
         }
+        
+        
 
         updateButtons();
     }
@@ -109,14 +114,14 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
 
         lblListaAlumnos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaAlumnos = new javax.swing.JTable();
-        btnBorrar = new javax.swing.JButton();
-        btnBaja = new javax.swing.JButton();
+        jtTablaMaterias = new javax.swing.JTable();
+        btnCerrar = new javax.swing.JButton();
+        btnEliminarInscrip = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         cmbAlumno = new javax.swing.JComboBox<>();
         jrbNoInscripto = new javax.swing.JRadioButton();
         jrbInscripto = new javax.swing.JRadioButton();
-        btnBaja1 = new javax.swing.JButton();
+        btnInscribir = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -124,8 +129,8 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblListaAlumnos.setText("Inscripciones a Materias:");
 
-        jtTablaAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtTablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaMaterias.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jtTablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -136,21 +141,19 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaAlumnos.setToolTipText("");
-        jtTablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtTablaMaterias.setToolTipText("");
+        jtTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtTablaAlumnosMouseClicked(evt);
+                jtTablaMateriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtTablaAlumnos);
+        jScrollPane1.setViewportView(jtTablaMaterias);
 
-        btnBorrar.setText("Cerrar");
-        btnBorrar.setEnabled(false);
-        btnBorrar.addActionListener(this::btnBorrarActionPerformed);
+        btnCerrar.setText("Cerrar");
+        btnCerrar.setEnabled(false);
 
-        btnBaja.setText("Eliminar inscripción");
-        btnBaja.setEnabled(false);
-        btnBaja.addActionListener(this::btnBajaActionPerformed);
+        btnEliminarInscrip.setText("Eliminar inscripción");
+        btnEliminarInscrip.setEnabled(false);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -172,17 +175,15 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cmbAlumno)
+            .addComponent(jrbInscripto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrbNoInscripto)
-                    .addComponent(jrbInscripto)))
+                .addComponent(jrbNoInscripto))
         );
 
-        btnBaja1.setText("Inscribir");
-        btnBaja1.setEnabled(false);
-        btnBaja1.addActionListener(this::btnBaja1ActionPerformed);
+        btnInscribir.setText("Inscribir");
+        btnInscribir.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,11 +193,11 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminarInscrip, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBaja1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
@@ -210,62 +211,36 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar)
-                    .addComponent(btnBaja)
-                    .addComponent(btnBaja1))
+                    .addComponent(btnCerrar)
+                    .addComponent(btnEliminarInscrip)
+                    .addComponent(btnInscribir))
                 .addGap(13, 13, 13))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaAlumnosMouseClicked
+    private void jtTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMateriasMouseClicked
         updateButtons();
-    }//GEN-LAST:event_jtTablaAlumnosMouseClicked
-
-    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
-        elementSelected.setActivo(false);
-        alumnData.update(elementSelected);
-        updateTable();
-    }//GEN-LAST:event_btnBajaActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
-        alumnData.remove(elementSelected.getIdAlumno());
-        updateTable();
-
-        int rowCount = jTable.getRowCount();
-        if (rowCount > 0) {
-            int newIndex = Math.min(indexSelected, rowCount - 1);
-            jTable.setRowSelectionInterval(newIndex, newIndex);
-            int idAlumno = (int) jTable.getValueAt(newIndex, 0);
-            elementSelected = alumnData.getById(idAlumno);
-        } else {
-            elementSelected = null;
-        }
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnBaja1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaja1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBaja1ActionPerformed
+    }//GEN-LAST:event_jtTablaMateriasMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBaja;
-    private javax.swing.JButton btnBaja1;
-    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnEliminarInscrip;
+    private javax.swing.JButton btnInscribir;
     private javax.swing.JComboBox<Alumno> cmbAlumno;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton jrbInscripto;
     private javax.swing.JRadioButton jrbNoInscripto;
-    private javax.swing.JTable jtTablaAlumnos;
+    private javax.swing.JTable jtTablaMaterias;
     private javax.swing.JLabel lblListaAlumnos;
     // End of variables declaration//GEN-END:variables
 }
