@@ -59,30 +59,39 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     }
 
     public void selectTable(int idMateria) {
-        if (jTable.getRowCount() == 0) {
+        int rowCount = jTable.getRowCount();
+        if (rowCount == 0) {
+            materiaSelected = null;
+            indexSelected = -1;
             return;
         }
         if (idMateria != -1) {
-            ArrayList<Materia> listaMaterias = materiaData.getList();
+            for (int i = 0; i < rowCount; i++) {
+                String nombre = jTable.getValueAt(i, 0).toString();
 
-            for (int i = 0; i < jTable.getRowCount(); i++) {
-                String nombreMateria = jTable.getValueAt(i, 0).toString();
-
-                for (Materia materia : listaMaterias) {
-                    if (materia.getNombre().equals(nombreMateria) && materia.getIdMateria() == idMateria) {
+                for (Materia m : materiaData.getList()) {
+                    if (m.getIdMateria() == idMateria
+                            && m.getNombre().equals(nombre)) {
                         jTable.setRowSelectionInterval(i, i);
                         jTable.scrollRectToVisible(
-                        jTable.getCellRect(i, 0, true)
+                            jTable.getCellRect(i, 0, true)
                         );
+                        indexSelected = i;
+                        materiaSelected = m;
                         return;
                     }
                 }
             }
-        }else if (indexSelected > 0){
-            int selected = indexSelected-1;
-            jTable.setRowSelectionInterval(selected, selected);
-        }else if (indexSelected >= 0){
-            jTable.setRowSelectionInterval(0, 0);
+        }
+        int selected = Math.max(0, Math.min(indexSelected, rowCount - 1));
+        jTable.setRowSelectionInterval(selected, selected);
+        indexSelected = selected;
+        String nombre = jTable.getValueAt(selected, 0).toString();
+        for (Materia m : materiaData.getList()) {
+            if (m.getNombre().equals(nombre)) {
+                materiaSelected = m;
+                break;
+            }
         }
     }
     
