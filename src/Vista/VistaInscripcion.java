@@ -42,14 +42,12 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                     int selection = jTable.getSelectedRow();
                     if (selection != -1) {
                         indexSelected = selection;
-                        int idMateria = 0;
                         String nameMateria = (String)jTable.getValueAt(selection, 0);
                         for (Materia materia : materiaData.getList()) {
                             if (materia.getNombre().equals(nameMateria)) {
-                                idMateria = materia.getIdMateria();
+                                materiaSelected = materia;
                             }
                         }
-                        if (idMateria>0) {materiaSelected = materiaData.getById(idMateria);}
                     }
                 }
             }
@@ -76,7 +74,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                             jTable.getCellRect(i, 0, true)
                         );
                         indexSelected = i;
-                        materiaSelected = materiaData.getById(m.getIdMateria());
+                        materiaSelected = m;
                         return;
                     }
                 }
