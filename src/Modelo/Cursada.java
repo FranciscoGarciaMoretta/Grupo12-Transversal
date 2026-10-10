@@ -1,16 +1,15 @@
-
 package Modelo;
 
 public class Cursada {
     
     private int idCursada;
-    private Alumno idAlumno;
-    private Materia idMateria;
+    private int idAlumno;
+    private int idMateria;
     private float nota;
     private float asist;
     private int cursa;
 
-    public Cursada(int idCursada, Alumno idAlumno, Materia idMateria, float nota, float asist, int cursa) {
+    public Cursada(int idCursada, int idAlumno, int idMateria, float nota, float asist, int cursa) {
         this.idCursada = idCursada;
         this.idAlumno = idAlumno;
         this.idMateria = idMateria;
@@ -27,19 +26,19 @@ public class Cursada {
         this.idCursada = idCursada;
     }
 
-    public Alumno getIdAlumno() {
+    public int getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Alumno idAlumno) {
+    public void setIdAlumno(int idAlumno) {
         this.idAlumno = idAlumno;
     }
 
-    public Materia getIdMateria() {
+    public int getIdMateria() {
         return idMateria;
     }
 
-    public void setIdMateria(Materia idMateria) {
+    public void setIdMateria(int idMateria) {
         this.idMateria = idMateria;
     }
 

@@ -1,11 +1,14 @@
 package Vista;
 
 import Modelo.Alumno;
+import Modelo.Cursada;
 import static Vista.VistaMain.alumnData;
+import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.wVistaAlumno;
 import static Vista.VistaMain.wVistaAlumnoAgregar;
 import static Vista.VistaMain.wVistaAlumnoModificar;
+import static Vista.VistaMain.wVistaInscripcion;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -105,6 +108,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         }
 
         updateButtons();
+        if (wVistaInscripcion != null) {wVistaInscripcion.updateAll();}
     }
 
     public void updateButtons() {
@@ -242,6 +246,12 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        for (Cursada c : cursadaData.getList()) {
+            if (c.getIdAlumno() == elementSelected.getIdAlumno()) {
+                cursadaData.remove(c.getIdCursada());
+            }
+        }
+        
         if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
         alumnData.remove(elementSelected.getIdAlumno());
         updateTable();

@@ -1,8 +1,11 @@
 package Vista;
 
+import Modelo.Cursada;
 import Modelo.Materia;
+import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.materiaData;
+import static Vista.VistaMain.wVistaInscripcion;
 import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
 import static Vista.VistaMain.wVistaMateriaModificar;
@@ -100,6 +103,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         }
 
         updateButtons();
+        if (wVistaInscripcion != null) {wVistaInscripcion.updateAll();}
     }
 
     public void updateButtons() {
@@ -229,6 +233,12 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        for (Cursada c : cursadaData.getList()) {
+            if (c.getIdMateria() == elementSelected.getIdMateria()) {
+                cursadaData.remove(c.getIdCursada());
+            }
+        }
+        
         if (wVistaMateriaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
         updateTable();

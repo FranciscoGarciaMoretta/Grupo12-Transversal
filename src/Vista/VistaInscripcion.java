@@ -1,7 +1,10 @@
 package Vista;
 
 import Modelo.Alumno;
+import Modelo.Cursada;
 import Modelo.Materia;
+import static Vista.VistaMain.alumnData;
+import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.wVistaMateria;
@@ -17,6 +20,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     
     private Alumno alumnSelected = null;
     private Materia materiaSelected = null;
+    private boolean cInscription = false;
     private int indexSelected = 0;
     private JTable jTable;
 
@@ -24,7 +28,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         initComponents();
         jTable = jtTablaMaterias;
 
-        updateTable();
+        updateAll();
 
         jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable.setShowHorizontalLines(true);
@@ -54,34 +58,106 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         );
     }
 
-    public void selectTable(int row) {
+    public void selectTable(int idMateria) {
         if (jTable.getRowCount() == 0) {
             return;
         }
+        if (idMateria != -1) {
+            ArrayList<Materia> listaMaterias = materiaData.getList();
 
-        if (row == -1) {
-            int lastRow = jTable.getRowCount() - 1;
-            jTable.setRowSelectionInterval(lastRow, lastRow);
-            return;
-        }
+            for (int i = 0; i < jTable.getRowCount(); i++) {
+                String nombreMateria = jTable.getValueAt(i, 0).toString();
 
-        for (int i = 0; i < jTable.getRowCount(); i++) {
-            if (Integer.parseInt(jTable.getValueAt(i, 0).toString()) == row) {
-                jTable.setRowSelectionInterval(i, i);
-                jTable.scrollRectToVisible(jTable.getCellRect(i, 0, true));
-                break;
+                for (Materia materia : listaMaterias) {
+                    if (materia.getNombre().equals(nombreMateria) && materia.getIdMateria() == idMateria) {
+                        jTable.setRowSelectionInterval(i, i);
+                        jTable.scrollRectToVisible(
+                        jTable.getCellRect(i, 0, true)
+                        );
+                        return;
+                    }
+                }
             }
+        }else if (indexSelected > 0){
+            int selected = indexSelected-1;
+            jTable.setRowSelectionInterval(selected, selected);
+        }else if (indexSelected >= 0){
+            jTable.setRowSelectionInterval(0, 0);
         }
     }
     
-    public void updateTable() {
+    public ArrayList<Materia> searchMaterias(boolean inscriptas) {
+        ArrayList<Materia> devolverMaterias = materiaData.getList();
+        ArrayList<Materia> encontrarMaterias = new ArrayList<>();
+        if (alumnSelected != null) {
+            for (Materia m : materiaData.getList()) {
+                for (Cursada c : cursadaData.getList()) {
+                    if (c.getIdAlumno() == alumnSelected.getIdAlumno()) {
+                        if (m.getIdMateria() == c.getIdMateria()) {
+                            if (!encontrarMaterias.contains(m)) {encontrarMaterias.add(m);}
+                        }
+                    }
+                }
+            }
+        }
+        if (inscriptas) {
+            devolverMaterias = encontrarMaterias;
+        }else{
+            devolverMaterias.removeIf(m -> encontrarMaterias.stream().anyMatch(e -> e.getIdMateria() == m.getIdMateria()));
+        }
+        
+        if (materiaSelected != null) {
+            boolean esta = false;
+            for (Materia m : devolverMaterias) {
+                if (m.getNombre().equals(materiaSelected.getNombre())) {
+                    esta = true;
+                }
+            }
+            if (!esta) {
+                materiaSelected = null;
+            }
+        }
+        
+        return devolverMaterias;
+    }
+    
+    public void updateAll() {
+        //JCOMBOX
+        cmbAlumno.removeAllItems();
+        if (cmbAlumno.getItemCount() == 0) {
+            for (Alumno alumno : alumnData.getList()) {
+                cmbAlumno.addItem(alumno.getNombre());
+            }
+            if (alumnSelected != null) {
+                cmbAlumno.setSelectedItem(alumnSelected.getNombre());
+            }
+        }
+        
+        ArrayList<Materia> materiaMostrar = new ArrayList<>();
+        
+        //CHEECK
+        if (cInscription) {
+            materiaMostrar = searchMaterias(true);
+            jrbInscripto.setSelected(true);
+            jrbNoInscripto.setSelected(false);
+            if (alumnSelected != null && materiaSelected != null) {btnEliminarInscrip.setEnabled(true);}else{btnEliminarInscrip.setEnabled(false);}
+            btnInscribir.setEnabled(false);
+        }else{
+            materiaMostrar = searchMaterias(false);
+            jrbInscripto.setSelected(false);
+            jrbNoInscripto.setSelected(true);
+            btnEliminarInscrip.setEnabled(false);
+            if (alumnSelected != null && materiaSelected != null) {btnInscribir.setEnabled(true);}else{btnInscribir.setEnabled(false);}
+        }
+        
+        //TABLE
         DefaultTableModel table = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-
+        
         table.addColumn("Materias:");
         jTable.setModel(table);
 
@@ -89,7 +165,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         jTable.getColumnModel().getColumn(0).setPreferredWidth(100);
         jTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
 
-        for (Materia m : materiaData.getList()) {
+        for (Materia m : materiaMostrar) {
             table.addRow(new Object[]{m.getNombre()});
         }
         
@@ -97,14 +173,9 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
 
         if (materiaSelected != null) {
             selectTable(materiaSelected.getIdMateria());
+        }else{
+            selectTable(-1);
         }
-        
-        
-
-        updateButtons();
-    }
-
-    public void updateButtons() {
         
     }
 
@@ -150,16 +221,20 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jtTablaMaterias);
 
         btnCerrar.setText("Cerrar");
-        btnCerrar.setEnabled(false);
+        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
         btnEliminarInscrip.setText("Eliminar inscripción");
-        btnEliminarInscrip.setEnabled(false);
+        btnEliminarInscrip.addActionListener(this::btnEliminarInscripActionPerformed);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        cmbAlumno.addActionListener(this::cmbAlumnoActionPerformed);
+
         jrbNoInscripto.setText("No inscriptas");
+        jrbNoInscripto.addActionListener(this::jrbNoInscriptoActionPerformed);
 
         jrbInscripto.setText("Inscriptas");
+        jrbInscripto.addActionListener(this::jrbInscriptoActionPerformed);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -183,7 +258,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         );
 
         btnInscribir.setText("Inscribir");
-        btnInscribir.setEnabled(false);
+        btnInscribir.addActionListener(this::btnInscribirActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,15 +302,63 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMateriasMouseClicked
-        updateButtons();
+        updateAll();
     }//GEN-LAST:event_jtTablaMateriasMouseClicked
+
+    private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
+        Cursada c = new Cursada(0,alumnSelected.getIdAlumno(),materiaSelected.getIdMateria(),0,0,0);
+        cursadaData.insert(c);
+        indexSelected = jTable.getSelectedRow();
+        updateAll();
+    }//GEN-LAST:event_btnInscribirActionPerformed
+
+    private void btnEliminarInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInscripActionPerformed
+        int id = 0;
+        for (Cursada c : cursadaData.getList()) {
+            if (c.getIdAlumno() == alumnSelected.getIdAlumno() && c.getIdMateria() == materiaSelected.getIdMateria()) {
+                id = c.getIdCursada();
+            }
+        }
+        if (id > 0) {
+            cursadaData.remove(id);
+            indexSelected = jTable.getSelectedRow();
+            updateAll();
+        }
+    }//GEN-LAST:event_btnEliminarInscripActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.hide();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void cmbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlumnoActionPerformed
+        if (cmbAlumno.getSelectedItem() != null) {
+            Alumno alumn;
+            String name = cmbAlumno.getSelectedItem().toString();
+            for (Alumno alumno : alumnData.getList()) {
+                if (alumno.getNombre().equals(name)) {
+                    alumnSelected = alumno;
+                }
+            }
+        }
+        updateAll();
+    }//GEN-LAST:event_cmbAlumnoActionPerformed
+
+    private void jrbInscriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInscriptoActionPerformed
+        cInscription = true;
+        updateAll();
+    }//GEN-LAST:event_jrbInscriptoActionPerformed
+
+    private void jrbNoInscriptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbNoInscriptoActionPerformed
+        cInscription = false;
+        updateAll();
+    }//GEN-LAST:event_jrbNoInscriptoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminarInscrip;
     private javax.swing.JButton btnInscribir;
-    private javax.swing.JComboBox<Alumno> cmbAlumno;
+    private javax.swing.JComboBox<String> cmbAlumno;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton jrbInscripto;

@@ -1,6 +1,7 @@
 package Vista;
 
 import Persistencia.AlumnoData;
+import Persistencia.CursadaData;
 import Persistencia.MateriaData;
 import javax.swing.JDesktopPane;
 
@@ -10,6 +11,7 @@ public class VistaMain extends javax.swing.JFrame {
     
     public static AlumnoData alumnData = new AlumnoData();
     public static MateriaData materiaData = new MateriaData();
+    public static CursadaData cursadaData = new CursadaData();
     
     public static JDesktopPane desktopMain;
     
