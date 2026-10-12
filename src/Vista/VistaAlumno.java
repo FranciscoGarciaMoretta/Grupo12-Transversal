@@ -8,6 +8,8 @@ import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.wVistaAlumno;
 import static Vista.VistaMain.wVistaAlumnoAgregar;
 import static Vista.VistaMain.wVistaAlumnoModificar;
+import static Vista.VistaMain.wVistaCargaNota;
+import static Vista.VistaMain.wVistaCargaNotaModificar;
 import static Vista.VistaMain.wVistaInscripcion;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -252,6 +254,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             }
         }
         
+        if (wVistaCargaNota != null && elementSelected.getIdAlumno() == wVistaCargaNota.alumnSelected.getIdAlumno()) {wVistaCargaNota.hide();}
+        if (wVistaCargaNotaModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaCargaNotaModificar.alumnSelected.getIdAlumno()) {wVistaCargaNotaModificar.hide();}
         if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
         alumnData.remove(elementSelected.getIdAlumno());
         updateTable();

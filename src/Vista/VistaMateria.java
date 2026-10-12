@@ -5,6 +5,7 @@ import Modelo.Materia;
 import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.materiaData;
+import static Vista.VistaMain.wVistaCargaNotaModificar;
 import static Vista.VistaMain.wVistaInscripcion;
 import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
@@ -239,6 +240,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
             }
         }
         
+        if (wVistaCargaNotaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaCargaNotaModificar.materiaSelected.getIdMateria()) {wVistaCargaNotaModificar.hide();}
         if (wVistaMateriaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
         updateTable();

@@ -25,6 +25,9 @@ public class VistaMain extends javax.swing.JFrame {
     
     public static VistaInscripcion wVistaInscripcion = new VistaInscripcion();
     
+    public static VistaCargaNota wVistaCargaNota = new VistaCargaNota();
+    public static VistaCargaNotaModificar wVistaCargaNotaModificar = new VistaCargaNotaModificar();
+    
     public VistaMain() {
         initComponents();
         desktopMain = jDesktopPane1; 
@@ -35,6 +38,8 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.add(wVistaMateriaAgregar); wVistaMateriaAgregar.hide();
         desktopMain.add(wVistaMateriaModificar); wVistaMateriaModificar.hide();
         desktopMain.add(wVistaInscripcion); wVistaInscripcion.hide();
+        desktopMain.add(wVistaCargaNota); wVistaCargaNota.hide();
+        desktopMain.add(wVistaCargaNotaModificar); wVistaCargaNotaModificar.hide();
     }
 
     @SuppressWarnings("unchecked")
@@ -51,6 +56,8 @@ public class VistaMain extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         InscripcionesMenu = new javax.swing.JMenu();
         InscribirMateriasMenuItem = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +105,14 @@ public class VistaMain extends javax.swing.JFrame {
 
         jMenuBar1.add(InscripcionesMenu);
 
+        jMenu3.setText("Notas");
+
+        jMenuItem4.setText("Cargar notas");
+        jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+        jMenu3.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,6 +158,12 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.moveToFront(wVistaInscripcion);
     }//GEN-LAST:event_InscribirMateriasMenuItemActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        wVistaCargaNota.setLocation(150,0);
+        wVistaCargaNota.show();
+        desktopMain.moveToFront(wVistaCargaNota);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -175,9 +196,11 @@ public class VistaMain extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

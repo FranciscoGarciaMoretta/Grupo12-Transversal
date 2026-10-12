@@ -7,6 +7,7 @@ import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.desktopMain;
+import static Vista.VistaMain.wVistaCargaNota;
 import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
 import static Vista.VistaMain.wVistaMateriaModificar;
@@ -183,6 +184,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
             selectTable(-1);
         }
         
+        if (wVistaCargaNota != null) {wVistaCargaNota.updateAll();}
     }
 
     @SuppressWarnings("unchecked")
