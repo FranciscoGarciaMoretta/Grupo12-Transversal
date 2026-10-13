@@ -8,6 +8,7 @@ import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.wVistaCargaNota;
+import static Vista.VistaMain.wVistaInscripcionAgregar;
 import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
 import static Vista.VistaMain.wVistaMateriaModificar;
@@ -166,14 +167,29 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         };
         
         table.addColumn("Materias:");
+        if (cInscription) {
+            table.addColumn("Cursa:");
+        }
         jTable.setModel(table);
 
         renderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
         jTable.getColumnModel().getColumn(0).setPreferredWidth(100);
         jTable.getColumnModel().getColumn(0).setCellRenderer(renderer);
+        if (cInscription) {
+            jTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable.getColumnModel().getColumn(1).setCellRenderer(renderer);
+        }
 
         for (Materia m : materiaMostrar) {
-            table.addRow(new Object[]{m.getNombre()});
+            if (cInscription) {
+                for (Cursada c : cursadaData.getList()) {
+                    if (c.getIdAlumno() == alumnSelected.getIdAlumno() && c.getIdMateria() == m.getIdMateria()) {
+                        table.addRow(new Object[]{m.getNombre(),c.getCursa()});
+                    }
+                }
+            }else{
+                table.addRow(new Object[]{m.getNombre()});
+            }
         }
         
         jTable.setModel(table);
@@ -231,7 +247,8 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
-        btnEliminarInscrip.setText("Eliminar inscripción");
+        btnEliminarInscrip.setText("Anular inscripción");
+        btnEliminarInscrip.setActionCommand("Anular inscripción");
         btnEliminarInscrip.addActionListener(this::btnEliminarInscripActionPerformed);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -314,10 +331,14 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtTablaMateriasMouseClicked
 
     private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
-        Cursada c = new Cursada(0,alumnSelected.getIdAlumno(),materiaSelected.getIdMateria(),0,0,0);
-        cursadaData.insert(c);
-        indexSelected = jTable.getSelectedRow();
-        updateAll();
+        wVistaInscripcionAgregar.setLocation(
+            this.getX() + ((this.getWidth() - wVistaInscripcionAgregar.getWidth()) / 2),
+            this.getY() + ((this.getHeight() - wVistaInscripcionAgregar.getHeight()) / 2)
+        );
+        wVistaInscripcionAgregar.alumnSelected = alumnSelected;
+        wVistaInscripcionAgregar.materiaSelected = materiaSelected;
+        wVistaInscripcionAgregar.show();
+        desktopMain.moveToFront(wVistaInscripcionAgregar);
     }//GEN-LAST:event_btnInscribirActionPerformed
 
     private void btnEliminarInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInscripActionPerformed

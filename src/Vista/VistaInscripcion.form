@@ -114,7 +114,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEliminarInscrip">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Eliminar inscripci&#xf3;n"/>
+        <Property name="text" type="java.lang.String" value="Anular inscripci&#xf3;n"/>
+        <Property name="actionCommand" type="java.lang.String" value="Anular inscripci&#xf3;n"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarInscripActionPerformed"/>

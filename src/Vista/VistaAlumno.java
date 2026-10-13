@@ -11,6 +11,7 @@ import static Vista.VistaMain.wVistaAlumnoModificar;
 import static Vista.VistaMain.wVistaCargaNota;
 import static Vista.VistaMain.wVistaCargaNotaModificar;
 import static Vista.VistaMain.wVistaInscripcion;
+import static Vista.VistaMain.wVistaInscripcionAgregar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -80,7 +81,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         table.addColumn("Dni");
         table.addColumn("Nombre");
         table.addColumn("Fecha de Nacimiento");
-        table.addColumn("Activo");
+        table.addColumn("Estado");
         jTable.setModel(table);
         
         renderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
@@ -254,6 +255,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             }
         }
         
+        if (wVistaInscripcionAgregar != null && elementSelected.getIdAlumno() == wVistaInscripcionAgregar.alumnSelected.getIdAlumno()) {wVistaInscripcionAgregar.hide();}
         if (wVistaCargaNota != null && elementSelected.getIdAlumno() == wVistaCargaNota.alumnSelected.getIdAlumno()) {wVistaCargaNota.hide();}
         if (wVistaCargaNotaModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaCargaNotaModificar.alumnSelected.getIdAlumno()) {wVistaCargaNotaModificar.hide();}
         if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
@@ -273,8 +275,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         wVistaAlumnoAgregar.setLocation(
-                this.getX() + ((this.getWidth() - wVistaAlumnoAgregar.getWidth()) / 2),
-                this.getY() + ((this.getHeight() - wVistaAlumnoAgregar.getHeight()) / 2)
+            this.getX() + ((this.getWidth() - wVistaAlumnoAgregar.getWidth()) / 2),
+            this.getY() + ((this.getHeight() - wVistaAlumnoAgregar.getHeight()) / 2)
         );
         wVistaAlumnoAgregar.resetAll();
         wVistaAlumnoAgregar.show();
@@ -283,8 +285,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         wVistaAlumnoModificar.setLocation(
-                this.getX() + ((this.getWidth() - wVistaAlumnoModificar.getWidth()) / 2),
-                this.getY() + ((this.getHeight() - wVistaAlumnoModificar.getHeight()) / 2)
+            this.getX() + ((this.getWidth() - wVistaAlumnoModificar.getWidth()) / 2),
+            this.getY() + ((this.getHeight() - wVistaAlumnoModificar.getHeight()) / 2)
         );
         wVistaAlumnoModificar.alumnSelected = elementSelected;
         wVistaAlumnoModificar.resetAll();

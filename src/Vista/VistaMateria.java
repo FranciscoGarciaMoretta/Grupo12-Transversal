@@ -7,6 +7,7 @@ import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.wVistaCargaNotaModificar;
 import static Vista.VistaMain.wVistaInscripcion;
+import static Vista.VistaMain.wVistaInscripcionAgregar;
 import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
 import static Vista.VistaMain.wVistaMateriaModificar;
@@ -240,6 +241,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
             }
         }
         
+        if (wVistaInscripcionAgregar != null && elementSelected.getIdMateria()== wVistaInscripcionAgregar.materiaSelected.getIdMateria()) {wVistaInscripcionAgregar.hide();}
         if (wVistaCargaNotaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaCargaNotaModificar.materiaSelected.getIdMateria()) {wVistaCargaNotaModificar.hide();}
         if (wVistaMateriaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
@@ -258,8 +260,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         wVistaMateriaAgregar.setLocation(
-                this.getX() + ((this.getWidth() - wVistaMateriaAgregar.getWidth()) / 2),
-                this.getY() + ((this.getHeight() - wVistaMateriaAgregar.getHeight()) / 2)
+            this.getX() + ((this.getWidth() - wVistaMateriaAgregar.getWidth()) / 2),
+            this.getY() + ((this.getHeight() - wVistaMateriaAgregar.getHeight()) / 2)
         );
         wVistaMateriaAgregar.resetAll();
         wVistaMateriaAgregar.show();
@@ -268,8 +270,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         wVistaMateriaModificar.setLocation(
-                this.getX() + ((this.getWidth() - wVistaMateriaModificar.getWidth()) / 2),
-                this.getY() + ((this.getHeight() - wVistaMateriaModificar.getHeight()) / 2)
+            this.getX() + ((this.getWidth() - wVistaMateriaModificar.getWidth()) / 2),
+            this.getY() + ((this.getHeight() - wVistaMateriaModificar.getHeight()) / 2)
         );
         wVistaMateriaModificar.materiaSelected = elementSelected;
         wVistaMateriaModificar.resetAll();

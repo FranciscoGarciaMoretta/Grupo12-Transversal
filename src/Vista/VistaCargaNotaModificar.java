@@ -176,8 +176,8 @@ public class VistaCargaNotaModificar extends javax.swing.JInternalFrame {
                nota = Float.parseFloat(txtNota.getText());
                if (nota > 10) {
                    lblNota.setText("El límite máximo es de 10!!");
-               }else if (nota < 0) {
-                   lblNota.setText("El límite mínimo es de 0!!");
+               }else if (nota < 1) {
+                   lblNota.setText("El límite mínimo es de 1!!");
                }
             }catch(Exception e) {
                lblNota.setText("Ingrese un valor válido!!");

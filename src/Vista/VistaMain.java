@@ -24,6 +24,7 @@ public class VistaMain extends javax.swing.JFrame {
     public static VistaMateriaModificar wVistaMateriaModificar = new VistaMateriaModificar();
     
     public static VistaInscripcion wVistaInscripcion = new VistaInscripcion();
+    public static VistaInscripcionAgregar wVistaInscripcionAgregar = new VistaInscripcionAgregar();
     
     public static VistaCargaNota wVistaCargaNota = new VistaCargaNota();
     public static VistaCargaNotaModificar wVistaCargaNotaModificar = new VistaCargaNotaModificar();
@@ -38,10 +39,11 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.add(wVistaMateriaAgregar); wVistaMateriaAgregar.hide();
         desktopMain.add(wVistaMateriaModificar); wVistaMateriaModificar.hide();
         desktopMain.add(wVistaInscripcion); wVistaInscripcion.hide();
+        desktopMain.add(wVistaInscripcionAgregar); wVistaInscripcionAgregar.hide();
         desktopMain.add(wVistaCargaNota); wVistaCargaNota.hide();
         desktopMain.add(wVistaCargaNotaModificar); wVistaCargaNotaModificar.hide();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -159,7 +161,7 @@ public class VistaMain extends javax.swing.JFrame {
     }//GEN-LAST:event_InscribirMateriasMenuItemActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        wVistaCargaNota.setLocation(150,0);
+        wVistaCargaNota.setLocation(235,0);
         wVistaCargaNota.show();
         desktopMain.moveToFront(wVistaCargaNota);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
