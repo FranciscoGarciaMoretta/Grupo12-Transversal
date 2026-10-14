@@ -5,7 +5,6 @@ import Modelo.Cursada;
 import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.desktopMain;
-import static Vista.VistaMain.wVistaAlumno;
 import static Vista.VistaMain.wVistaAlumnoAgregar;
 import static Vista.VistaMain.wVistaAlumnoModificar;
 import static Vista.VistaMain.wVistaCargaNota;
@@ -25,8 +24,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
     public VistaAlumno() {
         initComponents();
-        jTable = jtTablaAlumnos;
-
+        jTable = tblListaAlumnos;
+        
         updateTable();
 
         jTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -133,8 +132,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblListaAlumnos = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaAlumnos = new javax.swing.JTable();
+        scpAlumnos = new javax.swing.JScrollPane();
+        tblListaAlumnos = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
@@ -143,12 +142,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("SGULP: Lista de alumnos");
 
         lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblListaAlumnos.setText("Lista de Alumnos:");
 
-        jtTablaAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtTablaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        tblListaAlumnos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblListaAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -159,13 +159,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaAlumnos.setToolTipText("");
-        jtTablaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblListaAlumnos.setToolTipText("");
+        tblListaAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtTablaAlumnosMouseClicked(evt);
+                tblListaAlumnosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtTablaAlumnos);
+        scpAlumnos.setViewportView(tblListaAlumnos);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(this::btnAgregarActionPerformed);
@@ -194,7 +194,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scpAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(18, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -218,7 +218,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scpAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
@@ -232,9 +232,9 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTablaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaAlumnosMouseClicked
+    private void tblListaAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListaAlumnosMouseClicked
         updateButtons();
-    }//GEN-LAST:event_jtTablaAlumnosMouseClicked
+    }//GEN-LAST:event_tblListaAlumnosMouseClicked
 
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
         elementSelected.setActivo(true);
@@ -301,8 +301,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBaja;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtTablaAlumnos;
     private javax.swing.JLabel lblListaAlumnos;
+    private javax.swing.JScrollPane scpAlumnos;
+    private javax.swing.JTable tblListaAlumnos;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,90 +21,78 @@ public class VistaInscripcionAgregar extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCalendar1 = new com.toedter.calendar.JCalendar();
-        jDayChooser1 = new com.toedter.calendar.JDayChooser();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jYearChooser = new com.toedter.calendar.JYearChooser();
-        btnCancelar = new javax.swing.JButton();
+        pnlTitulo = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        pnlAnio = new javax.swing.JPanel();
+        lblAnio = new javax.swing.JLabel();
+        spnAnio = new com.toedter.calendar.JYearChooser();
+        lblMsjFecha = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
-        lblDate = new javax.swing.JLabel();
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ERROR");
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("FECHA DE NACIMIENTO:");
+        btnCancelar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("SGULP: Año de cursada");
         setMinimumSize(new java.awt.Dimension(80, 38));
         setPreferredSize(new java.awt.Dimension(486, 208));
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlTitulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("INSCRIBIR:");
-        jLabel1.setToolTipText("");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("INSCRIBIR:");
+        lblTitulo.setToolTipText("");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloLayout = new javax.swing.GroupLayout(pnlTitulo);
+        pnlTitulo.setLayout(pnlTituloLayout);
+        pnlTituloLayout.setHorizontalGroup(
+            pnlTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlTituloLayout.setVerticalGroup(
+            pnlTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblTitulo)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlAnio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("AÑO CURSADA:");
+        lblAnio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAnio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAnio.setText("AÑO CURSADA:");
 
-        jYearChooser.setPreferredSize(new java.awt.Dimension(85, 22));
+        spnAnio.setPreferredSize(new java.awt.Dimension(85, 22));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlAnioLayout = new javax.swing.GroupLayout(pnlAnio);
+        pnlAnio.setLayout(pnlAnioLayout);
+        pnlAnioLayout.setHorizontalGroup(
+            pnlAnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAnioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(spnAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jLabel10)
-            .addComponent(jYearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pnlAnioLayout.setVerticalGroup(
+            pnlAnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(lblAnio)
+            .addComponent(spnAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+        lblMsjFecha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        lblMsjFecha.setForeground(new java.awt.Color(230, 0, 0));
+        lblMsjFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
 
-        lblDate.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        lblDate.setForeground(new java.awt.Color(230, 0, 0));
-        lblDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,10 +101,10 @@ public class VistaInscripcionAgregar extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMsjFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                        .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlAnio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,11 +115,11 @@ public class VistaInscripcionAgregar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblMsjFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
@@ -147,21 +135,21 @@ public class VistaInscripcionAgregar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        int year = jYearChooser.getYear();
-        lblDate.setText("");
+        int year = spnAnio.getYear();
+        lblMsjFecha.setText("");
         
         if (year > yearNow) {
-            lblDate.setText("Ingrese una año coherente!!");
+            lblMsjFecha.setText("Ingrese una año coherente!!");
         } else if (year < yearNow-110) {
-            lblDate.setText("Ingrese una año coherente!!");
+            lblMsjFecha.setText("Ingrese una año coherente!!");
         }
         
-        if (lblDate.getText().equals("") && alumnSelected!=null && materiaSelected!=null) {
+        if (lblMsjFecha.getText().equals("") && alumnSelected!=null && materiaSelected!=null) {
             Cursada cursada = new Cursada(0,alumnSelected.getIdAlumno(),materiaSelected.getIdMateria(),0,0,year);
             cursadaData.insert(cursada);
             wVistaInscripcion.updateAll();
             this.hide();
-            jYearChooser.setYear(yearNow);
+            spnAnio.setYear(yearNow);
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
@@ -169,16 +157,11 @@ public class VistaInscripcionAgregar extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
-    private com.toedter.calendar.JCalendar jCalendar1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDayChooser jDayChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private com.toedter.calendar.JYearChooser jYearChooser;
-    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblAnio;
+    private javax.swing.JLabel lblMsjFecha;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlAnio;
+    private javax.swing.JPanel pnlTitulo;
+    private com.toedter.calendar.JYearChooser spnAnio;
     // End of variables declaration//GEN-END:variables
 }

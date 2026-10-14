@@ -24,7 +24,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
 
     public VistaMateria() {
         initComponents();
-        jTable = jtTablaMaterias;
+        jTable = tblTablaMaterias;
 
         updateTable();
 
@@ -126,9 +126,9 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblListaAlumnos = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaMaterias = new javax.swing.JTable();
+        lblTitulo = new javax.swing.JLabel();
+        scpMaterias = new javax.swing.JScrollPane();
+        tblTablaMaterias = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
@@ -137,12 +137,13 @@ public class VistaMateria extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("SGULP: Lista de materias");
 
-        lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblListaAlumnos.setText("Lista de Materias:");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setText("Lista de Materias:");
 
-        jtTablaMaterias.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtTablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
+        tblTablaMaterias.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblTablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -153,13 +154,13 @@ public class VistaMateria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaMaterias.setToolTipText("");
-        jtTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblTablaMaterias.setToolTipText("");
+        tblTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtTablaMateriasMouseClicked(evt);
+                tblTablaMateriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtTablaMaterias);
+        scpMaterias.setViewportView(tblTablaMaterias);
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(this::btnAgregarActionPerformed);
@@ -197,20 +198,20 @@ public class VistaMateria extends javax.swing.JInternalFrame {
                         .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scpMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scpMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
@@ -224,9 +225,9 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMateriasMouseClicked
+    private void tblTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMateriasMouseClicked
         updateButtons();
-    }//GEN-LAST:event_jtTablaMateriasMouseClicked
+    }//GEN-LAST:event_tblTablaMateriasMouseClicked
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         elementSelected.setEstado(false);
@@ -292,8 +293,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBaja;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtTablaMaterias;
-    private javax.swing.JLabel lblListaAlumnos;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JScrollPane scpMaterias;
+    private javax.swing.JTable tblTablaMaterias;
     // End of variables declaration//GEN-END:variables
 }

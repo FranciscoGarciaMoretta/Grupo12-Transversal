@@ -9,9 +9,6 @@ import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.wVistaCargaNota;
 import static Vista.VistaMain.wVistaInscripcionAgregar;
-import static Vista.VistaMain.wVistaMateria;
-import static Vista.VistaMain.wVistaMateriaAgregar;
-import static Vista.VistaMain.wVistaMateriaModificar;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +25,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
 
     public VistaInscripcion() {
         initComponents();
-        jTable = jtTablaMaterias;
+        jTable = tblTablaMaterias;
 
         updateAll();
 
@@ -148,13 +145,13 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
             materiaMostrar = searchMaterias(true);
             jrbInscripto.setSelected(true);
             jrbNoInscripto.setSelected(false);
-            if (alumnSelected != null && materiaSelected != null) {btnEliminarInscrip.setEnabled(true);}else{btnEliminarInscrip.setEnabled(false);}
+            if (alumnSelected != null && materiaSelected != null) {btnAnularInscrip.setEnabled(true);}else{btnAnularInscrip.setEnabled(false);}
             btnInscribir.setEnabled(false);
         }else{
             materiaMostrar = searchMaterias(false);
             jrbInscripto.setSelected(false);
             jrbNoInscripto.setSelected(true);
-            btnEliminarInscrip.setEnabled(false);
+            btnAnularInscrip.setEnabled(false);
             if (alumnSelected != null && materiaSelected != null) {btnInscribir.setEnabled(true);}else{btnInscribir.setEnabled(false);}
         }
         
@@ -207,25 +204,57 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblListaAlumnos = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaMaterias = new javax.swing.JTable();
-        btnCerrar = new javax.swing.JButton();
-        btnEliminarInscrip = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        pnlAlumnos = new javax.swing.JPanel();
         cmbAlumno = new javax.swing.JComboBox<>();
         jrbNoInscripto = new javax.swing.JRadioButton();
         jrbInscripto = new javax.swing.JRadioButton();
+        scpMaterias = new javax.swing.JScrollPane();
+        tblTablaMaterias = new javax.swing.JTable();
+        btnCerrar = new javax.swing.JButton();
+        btnAnularInscrip = new javax.swing.JButton();
         btnInscribir = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("SGULP: Inscripción a materias");
 
-        lblListaAlumnos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblListaAlumnos.setText("Inscripciones a Materias:");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTitulo.setText("Inscripciones a Materias:");
 
-        jtTablaMaterias.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jtTablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
+        pnlAlumnos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        cmbAlumno.addActionListener(this::cmbAlumnoActionPerformed);
+
+        jrbNoInscripto.setText("No inscriptas");
+        jrbNoInscripto.addActionListener(this::jrbNoInscriptoActionPerformed);
+
+        jrbInscripto.setText("Inscriptas");
+        jrbInscripto.addActionListener(this::jrbInscriptoActionPerformed);
+
+        javax.swing.GroupLayout pnlAlumnosLayout = new javax.swing.GroupLayout(pnlAlumnos);
+        pnlAlumnos.setLayout(pnlAlumnosLayout);
+        pnlAlumnosLayout.setHorizontalGroup(
+            pnlAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAlumnosLayout.createSequentialGroup()
+                .addComponent(cmbAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbInscripto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrbNoInscripto)
+                .addContainerGap())
+        );
+        pnlAlumnosLayout.setVerticalGroup(
+            pnlAlumnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(cmbAlumno)
+            .addComponent(jrbInscripto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAlumnosLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jrbNoInscripto))
+        );
+
+        tblTablaMaterias.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblTablaMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -236,51 +265,19 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaMaterias.setToolTipText("");
-        jtTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblTablaMaterias.setToolTipText("");
+        tblTablaMaterias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtTablaMateriasMouseClicked(evt);
+                tblTablaMateriasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtTablaMaterias);
+        scpMaterias.setViewportView(tblTablaMaterias);
 
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(this::btnCerrarActionPerformed);
 
-        btnEliminarInscrip.setText("Anular inscripción");
-        btnEliminarInscrip.setActionCommand("Anular inscripción");
-        btnEliminarInscrip.addActionListener(this::btnEliminarInscripActionPerformed);
-
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        cmbAlumno.addActionListener(this::cmbAlumnoActionPerformed);
-
-        jrbNoInscripto.setText("No inscriptas");
-        jrbNoInscripto.addActionListener(this::jrbNoInscriptoActionPerformed);
-
-        jrbInscripto.setText("Inscriptas");
-        jrbInscripto.addActionListener(this::jrbInscriptoActionPerformed);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(cmbAlumno, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbInscripto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbNoInscripto)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cmbAlumno)
-            .addComponent(jrbInscripto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jrbNoInscripto))
-        );
+        btnAnularInscrip.setText("Anular inscripción");
+        btnAnularInscrip.addActionListener(this::btnAnularInscripActionPerformed);
 
         btnInscribir.setText("Inscribir");
         btnInscribir.addActionListener(this::btnInscribirActionPerformed);
@@ -295,30 +292,30 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminarInscrip, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAnularInscrip, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnInscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scpMaterias, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                    .addComponent(pnlAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblListaAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scpMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar)
-                    .addComponent(btnEliminarInscrip)
+                    .addComponent(btnAnularInscrip)
                     .addComponent(btnInscribir))
                 .addGap(13, 13, 13))
         );
@@ -326,9 +323,9 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMateriasMouseClicked
+    private void tblTablaMateriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaMateriasMouseClicked
         updateAll();
-    }//GEN-LAST:event_jtTablaMateriasMouseClicked
+    }//GEN-LAST:event_tblTablaMateriasMouseClicked
 
     private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
         wVistaInscripcionAgregar.setLocation(
@@ -341,7 +338,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         desktopMain.moveToFront(wVistaInscripcionAgregar);
     }//GEN-LAST:event_btnInscribirActionPerformed
 
-    private void btnEliminarInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInscripActionPerformed
+    private void btnAnularInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularInscripActionPerformed
         int id = 0;
         for (Cursada c : cursadaData.getList()) {
             if (c.getIdAlumno() == alumnSelected.getIdAlumno() && c.getIdMateria() == materiaSelected.getIdMateria()) {
@@ -353,7 +350,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
             indexSelected = jTable.getSelectedRow();
             updateAll();
         }
-    }//GEN-LAST:event_btnEliminarInscripActionPerformed
+    }//GEN-LAST:event_btnAnularInscripActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.hide();
@@ -384,15 +381,15 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnularInscrip;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnEliminarInscrip;
     private javax.swing.JButton btnInscribir;
     private javax.swing.JComboBox<String> cmbAlumno;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton jrbInscripto;
     private javax.swing.JRadioButton jrbNoInscripto;
-    private javax.swing.JTable jtTablaMaterias;
-    private javax.swing.JLabel lblListaAlumnos;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlAlumnos;
+    private javax.swing.JScrollPane scpMaterias;
+    private javax.swing.JTable tblTablaMaterias;
     // End of variables declaration//GEN-END:variables
 }
