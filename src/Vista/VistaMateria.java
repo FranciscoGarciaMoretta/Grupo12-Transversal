@@ -242,7 +242,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
             }
         }
         
-        if (wVistaInscripcionAgregar != null && elementSelected.getIdMateria()== wVistaInscripcionAgregar.materiaSelected.getIdMateria()) {wVistaInscripcionAgregar.hide();}
+        if (wVistaInscripcionAgregar != null && wVistaInscripcionAgregar.materiaSelected != null && elementSelected.getIdMateria()== wVistaInscripcionAgregar.materiaSelected.getIdMateria()) {wVistaInscripcionAgregar.hide();}
         if (wVistaCargaNotaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaCargaNotaModificar.materiaSelected.getIdMateria()) {wVistaCargaNotaModificar.hide();}
         if (wVistaMateriaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
