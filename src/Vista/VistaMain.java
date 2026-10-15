@@ -51,6 +51,14 @@ public class VistaMain extends javax.swing.JFrame {
         } catch (Exception e) {}
     }
     
+    public static void updateAllTables() {
+        if (wVistaAlumno != null) {wVistaAlumno.updateTable();}
+        if (wVistaMateria != null) {wVistaMateria.updateTable();}
+        if (wVistaInscripcion != null) {wVistaInscripcion.updateAll();}
+        if (wVistaCargaNota != null) {wVistaCargaNota.updateAll();}
+        if (wVistaListarInscripciones != null) {wVistaListarInscripciones.updateAll();}
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

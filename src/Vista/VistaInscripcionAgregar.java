@@ -4,6 +4,7 @@ import Modelo.Alumno;
 import Modelo.Cursada;
 import Modelo.Materia;
 import static Vista.VistaMain.cursadaData;
+import static Vista.VistaMain.updateAllTables;
 import static Vista.VistaMain.wVistaInscripcion;
 import java.time.LocalDate;
 
@@ -147,7 +148,7 @@ public class VistaInscripcionAgregar extends javax.swing.JInternalFrame {
         if (lblMsjFecha.getText().equals("") && alumnSelected!=null && materiaSelected!=null) {
             Cursada cursada = new Cursada(0,alumnSelected.getIdAlumno(),materiaSelected.getIdMateria(),0,0,year);
             cursadaData.insert(cursada);
-            wVistaInscripcion.updateAll();
+            updateAllTables();
             this.hide();
             spnAnio.setYear(yearNow);
         }

@@ -32,6 +32,18 @@ public class VistaListarInscripciones extends javax.swing.JInternalFrame {
         jTable.putClientProperty("JTable.showInactiveSelection", true);
     }
     
+    public void cmbSelection() {
+        if (cmbAlumno.getSelectedItem() != null) {
+            Alumno alumn;
+            String name = cmbAlumno.getSelectedItem().toString();
+            for (Alumno alumno : alumnData.getList()) {
+                if (alumno.getNombre().equals(name)) {
+                    alumnSelected = alumno;
+                }
+            }
+        }
+    }
+    
     public void updateAll() {
         //JCOMBOX
         cmbAlumno.removeAllItems();
@@ -43,6 +55,7 @@ public class VistaListarInscripciones extends javax.swing.JInternalFrame {
                 cmbAlumno.setSelectedItem(alumnSelected.getNombre());
             }
         }
+        cmbSelection();
         
         //TABLE
         DefaultTableModel table = new DefaultTableModel() {
@@ -185,15 +198,7 @@ public class VistaListarInscripciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void cmbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlumnoActionPerformed
-        if (cmbAlumno.getSelectedItem() != null) {
-            Alumno alumn;
-            String name = cmbAlumno.getSelectedItem().toString();
-            for (Alumno alumno : alumnData.getList()) {
-                if (alumno.getNombre().equals(name)) {
-                    alumnSelected = alumno;
-                }
-            }
-        }
+        cmbSelection();
         updateAll();
     }//GEN-LAST:event_cmbAlumnoActionPerformed
 

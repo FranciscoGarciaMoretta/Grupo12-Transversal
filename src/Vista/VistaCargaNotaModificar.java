@@ -4,6 +4,7 @@ import Modelo.Alumno;
 import Modelo.Cursada;
 import Modelo.Materia;
 import static Vista.VistaMain.cursadaData;
+import static Vista.VistaMain.updateAllTables;
 import static Vista.VistaMain.wVistaCargaNota;
 import java.awt.Color;
 
@@ -183,7 +184,7 @@ public class VistaCargaNotaModificar extends javax.swing.JInternalFrame {
             }
             Cursada c = new Cursada(cursada.getIdCursada(),cursada.getIdAlumno(),cursada.getIdMateria(),nota,cursada.getAsist(),cursada.getCursa());
             cursadaData.update(c);
-            wVistaCargaNota.updateAll();
+            updateAllTables();
             wVistaCargaNota.selectTable(-1);
             this.hide();
         }

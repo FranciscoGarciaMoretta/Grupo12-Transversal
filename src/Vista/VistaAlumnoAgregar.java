@@ -2,6 +2,7 @@ package Vista;
 
 import Modelo.Alumno;
 import static Vista.VistaMain.alumnData;
+import static Vista.VistaMain.updateAllTables;
 import java.awt.Color;
 import java.time.LocalDate;
 import static Vista.VistaMain.wVistaAlumno;
@@ -313,7 +314,7 @@ public class VistaAlumnoAgregar extends javax.swing.JInternalFrame {
             int aDni = Integer.parseInt(txtDni.getText());
             String aName = txtNombre.getText();
             alumnData.insert(new Alumno(0,aDni,aName,aDate,true));
-            wVistaAlumno.updateTable();
+            updateAllTables();
             wVistaAlumno.selectTable(-1);
             this.hide();
         }

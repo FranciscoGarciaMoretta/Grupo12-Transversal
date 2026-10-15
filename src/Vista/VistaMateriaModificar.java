@@ -5,6 +5,7 @@
 package Vista;
 import Modelo.Materia;
 import static Vista.VistaMain.materiaData;
+import static Vista.VistaMain.updateAllTables;
 import java.awt.Color;
 import java.time.LocalDate;
 import static Vista.VistaMain.wVistaMateria;
@@ -180,7 +181,7 @@ public class VistaMateriaModificar extends javax.swing.JInternalFrame {
             String mName = txtNombre.getText();
             boolean mEstate = materiaSelected.getEstado();
             materiaData.update(new Materia(mID,mName,mEstate));
-            wVistaMateria.updateTable();
+            updateAllTables();
             wVistaMateria.selectTable(mID);
             this.hide();
         }

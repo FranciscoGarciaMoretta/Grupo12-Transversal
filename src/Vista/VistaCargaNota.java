@@ -125,6 +125,18 @@ public class VistaCargaNota extends javax.swing.JInternalFrame {
         return devolverMaterias;
     }
     
+    public void cmbSelection() {
+        if (cmbAlumno.getSelectedItem() != null) {
+            Alumno alumn;
+            String name = cmbAlumno.getSelectedItem().toString();
+            for (Alumno alumno : alumnData.getList()) {
+                if (alumno.getNombre().equals(name)) {
+                    alumnSelected = alumno;
+                }
+            }
+        }
+    }
+    
     public void updateAll() {
         //JCOMBOX
         cmbAlumno.removeAllItems();
@@ -136,6 +148,7 @@ public class VistaCargaNota extends javax.swing.JInternalFrame {
                 cmbAlumno.setSelectedItem(alumnSelected.getNombre());
             }
         }
+        cmbSelection();
         
         ArrayList<Cursada> materiaMostrar = new ArrayList<>();
         
@@ -302,15 +315,7 @@ public class VistaCargaNota extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void cmbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlumnoActionPerformed
-        if (cmbAlumno.getSelectedItem() != null) {
-            Alumno alumn;
-            String name = cmbAlumno.getSelectedItem().toString();
-            for (Alumno alumno : alumnData.getList()) {
-                if (alumno.getNombre().equals(name)) {
-                    alumnSelected = alumno;
-                }
-            }
-        }
+        cmbSelection();
         updateAll();
     }//GEN-LAST:event_cmbAlumnoActionPerformed
 

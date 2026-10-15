@@ -7,6 +7,7 @@ import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.materiaData;
 import static Vista.VistaMain.desktopMain;
+import static Vista.VistaMain.updateAllTables;
 import static Vista.VistaMain.wVistaCargaNota;
 import static Vista.VistaMain.wVistaInscripcionAgregar;
 import java.util.ArrayList;
@@ -126,6 +127,18 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         return devolverMaterias;
     }
     
+    public void cmbSelection() {
+        if (cmbAlumno.getSelectedItem() != null) {
+            Alumno alumn;
+            String name = cmbAlumno.getSelectedItem().toString();
+            for (Alumno alumno : alumnData.getList()) {
+                if (alumno.getNombre().equals(name)) {
+                    alumnSelected = alumno;
+                }
+            }
+        }
+    }
+    
     public void updateAll() {
         //JCOMBOX
         cmbAlumno.removeAllItems();
@@ -137,6 +150,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
                 cmbAlumno.setSelectedItem(alumnSelected.getNombre());
             }
         }
+        cmbSelection();
         
         ArrayList<Materia> materiaMostrar = new ArrayList<>();
         
@@ -348,7 +362,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
         if (id > 0) {
             cursadaData.remove(id);
             indexSelected = jTable.getSelectedRow();
-            updateAll();
+            updateAllTables();
         }
     }//GEN-LAST:event_btnAnularInscripActionPerformed
 
@@ -357,15 +371,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void cmbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlumnoActionPerformed
-        if (cmbAlumno.getSelectedItem() != null) {
-            Alumno alumn;
-            String name = cmbAlumno.getSelectedItem().toString();
-            for (Alumno alumno : alumnData.getList()) {
-                if (alumno.getNombre().equals(name)) {
-                    alumnSelected = alumno;
-                }
-            }
-        }
+        cmbSelection();
         updateAll();
     }//GEN-LAST:event_cmbAlumnoActionPerformed
 

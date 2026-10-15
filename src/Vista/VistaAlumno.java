@@ -5,6 +5,7 @@ import Modelo.Cursada;
 import static Vista.VistaMain.alumnData;
 import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.desktopMain;
+import static Vista.VistaMain.updateAllTables;
 import static Vista.VistaMain.wVistaAlumnoAgregar;
 import static Vista.VistaMain.wVistaAlumnoModificar;
 import static Vista.VistaMain.wVistaCargaNota;
@@ -110,7 +111,6 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         }
 
         updateButtons();
-        if (wVistaInscripcion != null) {wVistaInscripcion.updateAll();}
     }
 
     public void updateButtons() {
@@ -239,13 +239,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
         elementSelected.setActivo(true);
         alumnData.update(elementSelected);
-        updateTable();
+        updateAllTables();
     }//GEN-LAST:event_btnAltaActionPerformed
 
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         elementSelected.setActivo(false);
         alumnData.update(elementSelected);
-        updateTable();
+        updateAllTables();
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -260,7 +260,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         if (wVistaCargaNotaModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaCargaNotaModificar.alumnSelected.getIdAlumno()) {wVistaCargaNotaModificar.hide();}
         if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
         alumnData.remove(elementSelected.getIdAlumno());
-        updateTable();
+        updateAllTables();
 
         int rowCount = jTable.getRowCount();
         if (rowCount > 0) {

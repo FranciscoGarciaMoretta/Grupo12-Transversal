@@ -5,6 +5,7 @@ import Modelo.Materia;
 import static Vista.VistaMain.cursadaData;
 import static Vista.VistaMain.desktopMain;
 import static Vista.VistaMain.materiaData;
+import static Vista.VistaMain.updateAllTables;
 import static Vista.VistaMain.wVistaCargaNotaModificar;
 import static Vista.VistaMain.wVistaInscripcion;
 import static Vista.VistaMain.wVistaInscripcionAgregar;
@@ -232,7 +233,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
         elementSelected.setEstado(false);
         materiaData.update(elementSelected);
-        updateTable();
+        updateAllTables();
     }//GEN-LAST:event_btnBajaActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -246,7 +247,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         if (wVistaCargaNotaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaCargaNotaModificar.materiaSelected.getIdMateria()) {wVistaCargaNotaModificar.hide();}
         if (wVistaMateriaModificar.materiaSelected != null && elementSelected.getIdMateria() == wVistaMateriaModificar.materiaSelected.getIdMateria()) {wVistaMateriaModificar.hide();}
         materiaData.remove(elementSelected.getIdMateria());
-        updateTable();
+        updateAllTables();
 
         int rowCount = jTable.getRowCount();
         if (rowCount > 0) {
@@ -283,7 +284,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     private void btnAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaActionPerformed
         elementSelected.setEstado(true);
         materiaData.update(elementSelected);
-        updateTable();
+        updateAllTables();
     }//GEN-LAST:event_btnAltaActionPerformed
 
 
