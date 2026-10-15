@@ -9,7 +9,6 @@ import static Vista.VistaMain.updateAllTables;
 import static Vista.VistaMain.wVistaCargaNotaModificar;
 import static Vista.VistaMain.wVistaInscripcion;
 import static Vista.VistaMain.wVistaInscripcionAgregar;
-import static Vista.VistaMain.wVistaMateria;
 import static Vista.VistaMain.wVistaMateriaAgregar;
 import static Vista.VistaMain.wVistaMateriaModificar;
 import javax.swing.JTable;
@@ -111,13 +110,13 @@ public class VistaMateria extends javax.swing.JInternalFrame {
 
     public void updateButtons() {
         btnModificar.setEnabled(false);
-        btnBorrar.setEnabled(false);
+        btnEliminar.setEnabled(false);
         btnAlta.setEnabled(false);
         btnBaja.setEnabled(false);
         
         if (jTable.getRowCount() > 0 && elementSelected != null) {
             btnModificar.setEnabled(true);
-            btnBorrar.setEnabled(true);
+            btnEliminar.setEnabled(true);
             btnAlta.setEnabled(!elementSelected.getEstado());
             btnBaja.setEnabled(elementSelected.getEstado());
         }
@@ -132,7 +131,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         tblTablaMaterias = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         btnAlta = new javax.swing.JButton();
         btnBaja = new javax.swing.JButton();
 
@@ -170,9 +169,9 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         btnModificar.setEnabled(false);
         btnModificar.addActionListener(this::btnModificarActionPerformed);
 
-        btnBorrar.setText("Eliminar");
-        btnBorrar.setEnabled(false);
-        btnBorrar.addActionListener(this::btnBorrarActionPerformed);
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setEnabled(false);
+        btnEliminar.addActionListener(this::btnEliminarActionPerformed);
 
         btnAlta.setText("Alta");
         btnAlta.setEnabled(false);
@@ -194,7 +193,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnModificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -217,7 +216,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar)
-                    .addComponent(btnBorrar)
+                    .addComponent(btnEliminar)
                     .addComponent(btnAlta)
                     .addComponent(btnBaja))
                 .addGap(13, 13, 13))
@@ -236,7 +235,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         updateAllTables();
     }//GEN-LAST:event_btnBajaActionPerformed
 
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         for (Cursada c : cursadaData.getList()) {
             if (c.getIdMateria() == elementSelected.getIdMateria()) {
                 cursadaData.remove(c.getIdCursada());
@@ -258,7 +257,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         } else {
             elementSelected = null;
         }
-    }//GEN-LAST:event_btnBorrarActionPerformed
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         wVistaMateriaAgregar.setLocation(
@@ -292,7 +291,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAlta;
     private javax.swing.JButton btnBaja;
-    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JScrollPane scpMaterias;

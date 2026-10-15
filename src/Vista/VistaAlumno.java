@@ -10,7 +10,6 @@ import static Vista.VistaMain.wVistaAlumnoAgregar;
 import static Vista.VistaMain.wVistaAlumnoModificar;
 import static Vista.VistaMain.wVistaCargaNota;
 import static Vista.VistaMain.wVistaCargaNotaModificar;
-import static Vista.VistaMain.wVistaInscripcion;
 import static Vista.VistaMain.wVistaInscripcionAgregar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

@@ -48,8 +48,8 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
         pnlFecha = new javax.swing.JPanel();
         lblFechaNac = new javax.swing.JLabel();
         dchFechaNac = new com.toedter.calendar.JDateChooser();
-        btnCancelar = new javax.swing.JButton();
         btnConfirmar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         lblMsjDni = new javax.swing.JLabel();
         lblMsjNombre = new javax.swing.JLabel();
         lblMsjFecha = new javax.swing.JLabel();
@@ -168,11 +168,11 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
             .addComponent(dchFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
-
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
+
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         lblMsjDni.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lblMsjDni.setForeground(new java.awt.Color(230, 0, 0));
@@ -201,9 +201,9 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
                             .addComponent(pnlDni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(pnlNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblMsjDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMsjNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnlFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -228,33 +228,13 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
                 .addComponent(lblMsjFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnConfirmar))
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnCancelar))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.hide();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
-        String text = txtDni.getText();
-        text = text.replaceAll("\\D", "");
-        txtDni.setBackground(new Color(255, 255, 255));
-        txtDni.setText(text);
-        lblMsjDni.setText("");
-    }//GEN-LAST:event_txtDniKeyReleased
-
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        String text = txtNombre.getText();
-        text = text.replaceAll("[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]", "");
-        txtNombre.setBackground(new Color(255, 255, 255));
-        txtNombre.setText(text);
-        lblMsjNombre.setText("");
-    }//GEN-LAST:event_txtNombreKeyReleased
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Color errorColor = new Color(255, 185, 185);
@@ -330,6 +310,26 @@ public class VistaAlumnoModificar extends javax.swing.JInternalFrame {
             this.hide();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void txtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyReleased
+        String text = txtDni.getText();
+        text = text.replaceAll("\\D", "");
+        txtDni.setBackground(new Color(255, 255, 255));
+        txtDni.setText(text);
+        lblMsjDni.setText("");
+    }//GEN-LAST:event_txtDniKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        String text = txtNombre.getText();
+        text = text.replaceAll("[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]", "");
+        txtNombre.setBackground(new Color(255, 255, 255));
+        txtNombre.setText(text);
+        lblMsjNombre.setText("");
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.hide();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

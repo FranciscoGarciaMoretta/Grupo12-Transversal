@@ -3,7 +3,6 @@ package Vista;
 import Modelo.Materia;
 import static Vista.VistaMain.materiaData;
 import java.awt.Color;
-import java.time.LocalDate;
 import static Vista.VistaMain.wVistaMateria;
 import java.util.ArrayList;
 
@@ -29,8 +28,8 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
         txtNombre = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
         lblMsjNombre = new javax.swing.JLabel();
-        btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnConfirmar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -96,11 +95,11 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
         lblMsjNombre.setForeground(new java.awt.Color(230, 0, 0));
         lblMsjNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
-
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(this::btnConfirmarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,9 +113,9 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
                         .addComponent(pnlTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(pnlMateria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,25 +129,13 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
                 .addComponent(lblMsjNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnConfirmar))
+                    .addComponent(btnConfirmar)
+                    .addComponent(btnCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.hide();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        String text = txtNombre.getText();
-        text = text.replaceAll("[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]", "");
-        txtNombre.setBackground(new Color(255, 255, 255));
-        txtNombre.setText(text);
-        lblMsjNombre.setText("");
-    }//GEN-LAST:event_txtNombreKeyReleased
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         Color errorColor = new Color(255, 185, 185);
@@ -178,6 +165,18 @@ public class VistaMateriaAgregar extends javax.swing.JInternalFrame {
             this.hide();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        String text = txtNombre.getText();
+        text = text.replaceAll("[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]", "");
+        txtNombre.setBackground(new Color(255, 255, 255));
+        txtNombre.setText(text);
+        lblMsjNombre.setText("");
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.hide();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
