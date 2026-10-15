@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2026 a las 04:00:48
+-- Tiempo de generación: 15-10-2026 a las 23:50:38
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -62,6 +62,27 @@ CREATE TABLE `cursada` (
   `cursa` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `cursada`
+--
+
+INSERT INTO `cursada` (`idCursada`, `idAlumno`, `idMateria`, `nota`, `asist`, `cursa`) VALUES
+(1, 1, 2, 9, 0, '2026'),
+(2, 1, 5, 6, 0, '2026'),
+(3, 1, 4, 8, 0, '2026'),
+(4, 2, 1, 10, 0, '2024'),
+(5, 2, 5, 9.5, 0, '2019'),
+(6, 2, 3, 10, 0, '2026'),
+(7, 2, 4, 10, 0, '2019'),
+(8, 3, 4, 7, 0, '2026'),
+(9, 3, 3, 6.77, 0, '2026'),
+(10, 3, 1, 8, 0, '2025'),
+(11, 3, 2, 9, 0, '2026'),
+(12, 4, 3, 8, 0, '2026'),
+(13, 4, 1, 9, 0, '2020'),
+(14, 4, 4, 8.45, 0, '2026'),
+(15, 1, 1, 4, 0, '2026');
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +94,17 @@ CREATE TABLE `materia` (
   `nombre` varchar(20) NOT NULL,
   `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `materia`
+--
+
+INSERT INTO `materia` (`idMateria`, `nombre`, `estado`) VALUES
+(1, 'Matemáticas', 1),
+(2, 'Laboratorio I', 1),
+(3, 'Inglés I', 1),
+(4, 'Web I', 1),
+(5, 'Base de Datos', 1);
 
 --
 -- Índices para tablas volcadas
@@ -112,13 +144,13 @@ ALTER TABLE `alumno`
 -- AUTO_INCREMENT de la tabla `cursada`
 --
 ALTER TABLE `cursada`
-  MODIFY `idCursada` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCursada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
