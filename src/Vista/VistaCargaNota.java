@@ -168,7 +168,9 @@ public class VistaCargaNota extends javax.swing.JInternalFrame {
                     mName = m.getNombre();
                 }
             }
-            table.addRow(new Object[]{mName, c.getNota()});
+            String mostrar = String.valueOf(c.getNota());
+            if (c.getNota() <= 0) {mostrar = "Sin nota";}
+            table.addRow(new Object[]{mName, mostrar});
         }
         
         jTable.setModel(table);

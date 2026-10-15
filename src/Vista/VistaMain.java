@@ -29,6 +29,8 @@ public class VistaMain extends javax.swing.JFrame {
     public static VistaCargaNota wVistaCargaNota = new VistaCargaNota();
     public static VistaCargaNotaModificar wVistaCargaNotaModificar = new VistaCargaNotaModificar();
     
+    public static VistaListarInscripciones wVistaListarInscripciones = new VistaListarInscripciones();
+    
     public VistaMain() {
         initComponents();
         desktopMain = jDesktopPane1; 
@@ -42,6 +44,7 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.add(wVistaInscripcionAgregar); wVistaInscripcionAgregar.hide();
         desktopMain.add(wVistaCargaNota); wVistaCargaNota.hide();
         desktopMain.add(wVistaCargaNotaModificar); wVistaCargaNotaModificar.hide();
+        desktopMain.add(wVistaListarInscripciones); wVistaListarInscripciones.hide();
         try {
             java.awt.Image logo = java.awt.Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Img/logo.png"));
             this.setIconImage(logo);
@@ -62,6 +65,7 @@ public class VistaMain extends javax.swing.JFrame {
         mitListaMaterias = new javax.swing.JMenuItem();
         mnuInscripciones = new javax.swing.JMenu();
         mitInscribirMaterias = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnuNotas = new javax.swing.JMenu();
         mitCargarNotas = new javax.swing.JMenuItem();
 
@@ -109,6 +113,11 @@ public class VistaMain extends javax.swing.JFrame {
         mitInscribirMaterias.setText("Inscripción a materias");
         mitInscribirMaterias.addActionListener(this::mitInscribirMateriasActionPerformed);
         mnuInscripciones.add(mitInscribirMaterias);
+
+        jMenuItem1.setText("Listar Inscripciones");
+        jMenuItem1.setToolTipText("");
+        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
+        mnuInscripciones.add(jMenuItem1);
 
         mnbNavegador.add(mnuInscripciones);
 
@@ -171,6 +180,12 @@ public class VistaMain extends javax.swing.JFrame {
         desktopMain.moveToFront(wVistaCargaNota);
     }//GEN-LAST:event_mitCargarNotasActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        wVistaListarInscripciones.setLocation(235,0);
+        wVistaListarInscripciones.show();
+        desktopMain.moveToFront(wVistaListarInscripciones);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -195,6 +210,7 @@ public class VistaMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem mitCargarNotas;
     private javax.swing.JMenuItem mitInscribirMaterias;
     private javax.swing.JMenuItem mitListaAlumnos;
