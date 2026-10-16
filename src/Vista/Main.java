@@ -500,7 +500,7 @@ public class Main {
                     float sasist = scannerInt.nextFloat();
                     if (sasist > 100) {System.err.println("ERROR: el maximo de la asistencia es 100!!");}
                     else if (sasist < 0) {System.err.println("ERROR: el minimo de la asistencia es 0!!");} else {
-                        asist = asist;
+                        asist = sasist;
                         finish = true;
                     }
                 }catch(Exception e) {
