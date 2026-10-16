@@ -24,13 +24,18 @@ public class Main {
             boolean finishAlumn = true;
             boolean finishMateria = true;
             boolean finishInscriptions = true;
+            boolean error = false;
+            int optionSelected = 0;
             
-            System.out.println("QUE DESEA TESTEAR:\n1 - Alumno\n2 - Materia\n3 - Inscripciones\n4 - Salir");
-            
-            System.out.print("\nIngrese el numero de su opcion: ");
-            int optionSelected = scannerInt.nextInt();
-            
-            System.out.println("");
+            try {
+                System.out.println("QUE DESEA TESTEAR:\n1 - Alumno\n2 - Materia\n3 - Inscripciones\n4 - Salir");
+                System.out.print("\nIngrese el numero de su opcion: ");
+                optionSelected = scannerInt.nextInt();
+            }catch(Exception e) {
+                scannerInt.nextLine();
+                System.err.println("ERROR: Ingrese un valor valido!!");
+                error = true;
+            }
             
             switch(optionSelected) {
                 case 1: {
@@ -49,7 +54,12 @@ public class Main {
                     finishProgram = true;
                     break;
                 }
+                default: {
+                    if (!error) {System.err.println("ERROR: Ingrese un valor disponible!!");}
+                }
             }
+            
+            System.out.println("");
             
             while (!finishAlumn) {
                 boolean finishOptions = false;
