@@ -432,13 +432,13 @@ public class Main {
         Cursada find = null;
         while(true) {
             try {
-                System.out.print("Ingrese la ID de la cursada que desea tomar: ");
+                System.out.print("Ingrese la ID de la inscripcion que desea tomar: ");
                 int id = scannerInt.nextInt();
                 find = cursadaData.getById(id);
                 if (find != null) {
                     break;
                 }else{
-                    System.err.println("ERROR: No se encontro la cursada!!");
+                    System.err.println("ERROR: No se encontro la inscripcion!!");
                 }
             }catch(Exception e) {
                 System.err.println("ERROR: Solo se permiten valores numericos!!");
@@ -509,7 +509,7 @@ public class Main {
             }
         }
         
-        if (verifyChange(cursadaEdit,"Desea modificar la cursada? (s/n): ")) {
+        if (verifyChange(cursadaEdit,"Desea modificar el anio de cursada? (s/n): ")) {
             boolean finish = false;
             while (!finish) {
                 System.out.print("Ingrese el anio de la cursada: ");
