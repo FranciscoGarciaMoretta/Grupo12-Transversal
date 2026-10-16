@@ -158,7 +158,7 @@ public class Main {
                             }
                             case 2: {
                                 Cursada select = inscriptionSelect();
-                                materiaData.remove(select.getIdCursada());
+                                cursadaData.remove(select.getIdCursada());
                                 finishOptions = true;
                                 break;
                             }
