@@ -254,7 +254,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             }
         }
         
-        if (wVistaInscripcionAgregar != null && elementSelected.getIdAlumno() == wVistaInscripcionAgregar.alumnSelected.getIdAlumno()) {wVistaInscripcionAgregar.hide();}
+        if (wVistaInscripcionAgregar != null && wVistaInscripcionAgregar.materiaSelected != null && elementSelected.getIdAlumno() == wVistaInscripcionAgregar.alumnSelected.getIdAlumno()) {wVistaInscripcionAgregar.hide();}
         if (wVistaCargaNota != null && elementSelected.getIdAlumno() == wVistaCargaNota.alumnSelected.getIdAlumno()) {wVistaCargaNota.hide();}
         if (wVistaCargaNotaModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaCargaNotaModificar.alumnSelected.getIdAlumno()) {wVistaCargaNotaModificar.hide();}
         if (wVistaAlumnoModificar.alumnSelected != null && elementSelected.getIdAlumno() == wVistaAlumnoModificar.alumnSelected.getIdAlumno()) {wVistaAlumnoModificar.hide();}
